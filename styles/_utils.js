@@ -35,7 +35,7 @@ const _color = {
   blue_hover: `#4198ca`,
   blue_week_hover: `#F8FCFE`,
   blue_week: `#9DC7E0`,
-  blue_font: `#47A7DF`,
+  blue_font: `#3e64ff`,
   blue_line_bg: `#F0F7FB`,
   link_blue: `#8bb2ec`,
   ribbon: `#2458A5`,
@@ -51,9 +51,10 @@ const _color = {
 };
 
 const _device_size = {
-  pc: "1200px",
-  mobile: "400px",
-  pad: "800px",
+  main_pc: "1200px",
+  main_mobile: "400px",
+  main_pad: "800px",
+  header_pc: "1400px",
 };
 
 export { _device_size, _color };

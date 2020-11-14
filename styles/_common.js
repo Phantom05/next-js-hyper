@@ -2,7 +2,8 @@ import { css } from "@emotion/react";
 import { _device_size, _color } from "./_utils.js";
 
 export const fontFamily = css`
-  font-family: "Noto Sans", sans-serif;
+  /* font-family: "Noto Sans", sans-serif; */
+  font-family: "Poppins", Arial, sans-serif;
 `;
 export const color = _color;
 export const device = _device_size;
@@ -101,3 +102,34 @@ export const dotdotdot = css`
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
+
+export const textUnderline = (
+  $color = color.black_font,
+  $size = 1,
+  $duration = 0.25
+) => {
+  const bottomSize = 0 - $size / 2 + "px";
+  return css`
+    color: ${$color};
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    &:before {
+      background-color: ${$color};
+      content: "";
+      height: ${$size}px;
+      position: absolute;
+      bottom: ${bottomSize};
+      transition: width ${$duration}s ease-in-out;
+      right: 0;
+      top: 100%;
+      width: 0;
+    }
+    &:hover {
+      &:before {
+        left: 0;
+        width: 100%;
+      }
+    }
+  `;
+};
