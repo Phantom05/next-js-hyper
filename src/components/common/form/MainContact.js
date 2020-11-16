@@ -72,7 +72,7 @@ const Styled = {
     .contact__section_btn {
       ${buttonWideCircle("white", "black")};
       border-radius: 0;
-      padding: 15px 40px;
+      padding: 15px 60px;
       font-family: "Lora", serif;
       font-weight: 600;
     }
