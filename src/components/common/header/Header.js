@@ -165,6 +165,9 @@ const Styled = {
       padding: 15px;
       padding-top: 12px;
       margin-left: 17px;
+      color: gray;
+      position: relative;
+      top: 3px;
     }
     .header-brand-logo-text {
       span {

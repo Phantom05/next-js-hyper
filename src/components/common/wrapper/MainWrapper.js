@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import { device } from "@/styles/_common";
+import styled from "@emotion/styled";
+import { device, floatClear } from "@/styles/_common";
 
 function MainWrraper(props) {
   const { children = "" } = props;
@@ -14,8 +14,10 @@ function MainWrraper(props) {
 const Styled = {
   MainWrraper: styled.div`
     .wrap {
+      position: relative;
       width: ${device.main_pc};
       margin: auto;
+      ${floatClear};
     }
     @media screen and (max-width: 1200px) {
       .wrap {

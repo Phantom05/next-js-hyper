@@ -10,21 +10,19 @@ import {
   device,
   textUnderline,
 } from "@/styles/_common";
+import { MainProfile } from "@/components/common/profile";
+import { MainHomeView } from "@/components/common/screen";
 
 function HomeContainer(props) {
   return (
     <Styled.HomeContainer>
+      <section className="home__section main">
+        <MainHomeView />
+      </section>
       <MainWrapper>
-        <section className="home__section main">
-          <div>Welcome to the HYPERCOX INVEST</div>
-          <div>Securely expand your assets.</div>
-          <div>
-            Experts protect your assets and respond to the market in real time.
-          </div>
-          <div>Take a stable rate of 15% per year.</div>
-          <button>Contact</button>
+        <section className="home__section about">
+          <MainProfile />
         </section>
-        <section className="home__section about">About me</section>
         <section className="home__section cooperation">Cooperation</section>
         <section className="home__section carrer">Carrer</section>
         <section className="home__section services">Services</section>
@@ -33,46 +31,59 @@ function HomeContainer(props) {
         <section className="home__section view">View</section>
         <section className="home__section contact">Contact Me</section>
 
-        <div className="main__fixed_container">
-          <div className="main__fixed limit_box">
-            <div className="limit_box__container">
-              <div className="limit_box_in count">19</div>
-              <div className="limit_box_in text">
-                Limit number <br /> of Persons
-              </div>
-            </div>
-          </div>
-
-          <div className="main__fixed contact__box">
-            <div className="limit_box__container">
-              <Link href="/">
-                <a className="contact__fixed ">
-                  <WhatsAppIcon />
-                  <span className="contact__fixed_text">CONTACT US</span>
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <FixedLimitContactButtonBox />
       </MainWrapper>
     </Styled.HomeContainer>
   );
 }
 
+function FixedLimitContactButtonBox() {
+  return (
+    <Styled.FixedLimitContactButtonBox>
+      <div className="main__fixed_container">
+        <div className="main__fixed limit_box">
+          <div className="limit_box__container">
+            <div className="limit_box_in count">12</div>
+            <div className="limit_box_in text">
+              Limit number <br /> of Persons
+            </div>
+          </div>
+        </div>
+
+        <div className="main__fixed contact__box">
+          <div className="limit_box__container">
+            <Link href="/">
+              <a className="contact__fixed ">
+                <WhatsAppIcon />
+                <span className="contact__fixed_text">CONTACT US</span>
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Styled.FixedLimitContactButtonBox>
+  );
+}
 const Styled = {
   HomeContainer: styled.div`
+    /* background: ${color.bodyPuppleGradient}; */
     .home__section {
-      padding: 15px;
+      position: relative;
       border: 1px solid #ececec;
-      height: 100vh;
     }
     .main__fixed_container {
       position: fixed;
       right: 10px;
-      top: 64%;
+      top: 75%;
       width: 205px;
       height: 250px;
     }
+
+    .limit_box__container {
+      ${floatClear};
+    }
+  `,
+  FixedLimitContactButtonBox: styled.div`
     .main__fixed {
       &.limit_box {
         padding: 14px 28px 11px 24px;
@@ -81,9 +92,6 @@ const Styled = {
         z-index: 9998;
         transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1) 0.45s;
       }
-    }
-    .limit_box__container {
-      ${floatClear};
     }
     .limit_box_in {
       float: left;

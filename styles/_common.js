@@ -3,7 +3,9 @@ import { _device_size, _color } from "./_utils.js";
 
 export const fontFamily = css`
   /* font-family: "Noto Sans", sans-serif; */
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Circular", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* font-family: "Poppins", Arial, sans-serif; */
 `;
 export const color = _color;
 export const device = _device_size;
@@ -96,6 +98,27 @@ export const buttonPink = css`
     background: linear-gradient(45deg, #f16483 30%, #ff8e53 100%);
   }
 `;
+
+export const buttonPupple = (color = "white", bg = _color.puppleGradient) => {
+  return css`
+    position: relative;
+    display: inline-block;
+    background: ${bg};
+    ${font(15, color)};
+    font-weight: bold;
+    border-radius: 40px;
+    padding: 17px 50px;
+    border: 0;
+    box-shadow: 0px 2px 4px 0px rgba(113, 74, 253, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    top: 0;
+    &:hover {
+      top: -2px;
+      box-shadow: 0px 4px 8px 0px rgba(113, 74, 253, 0.3);
+    }
+  `;
+};
 
 export const dotdotdot = css`
   overflow: hidden;
