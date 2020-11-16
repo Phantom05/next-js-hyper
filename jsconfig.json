@@ -2,7 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"]
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/static/*": ["src/static/*"],
+      "@/containers/*": ["src/containers/*"],
+      "@/setting/*": ["src/setting/*"],
+      "@/styles/*": ["styles/*"]
     }
   },
   "include": ["src"]

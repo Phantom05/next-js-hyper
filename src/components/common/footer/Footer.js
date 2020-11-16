@@ -1,19 +1,19 @@
 import React from "react";
+import styled from "@emotion/styled";
 
 function Footer(props) {
   return (
-    <>
+    <Styled.Footer>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+          Powered by <span className="footer__author_name">HYPERCOX</span>
         </a>
       </footer>
-      <style jsx>{`
+      {/* <style jsx>{`
         footer {
           width: 100%;
           height: 100px;
@@ -21,6 +21,7 @@ function Footer(props) {
           display: flex;
           justify-content: center;
           align-items: center;
+          
         }
 
         footer img {
@@ -39,9 +40,29 @@ function Footer(props) {
           color: inherit;
           text-decoration: none;
         }
-      `}</style>
-    </>
+      `}</style> */}
+    </Styled.Footer>
   );
 }
 
+const Styled = {
+  Footer: styled.footer`
+    footer {
+      width: 100%;
+      height: 100px;
+      border-top: 1px solid #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .footer__author_name {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+  `,
+};
 export default Footer;
