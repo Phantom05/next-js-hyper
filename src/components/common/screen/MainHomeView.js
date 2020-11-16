@@ -48,8 +48,8 @@ function MainHomeView(props) {
               time.
             </div>
             <div className="mainhome__sub_text bottom">
-              Save valuable time and save opportunity costs. Safely, it gives
-              you more than a few times the return on your bank interest.
+              Save valuable time and save opportunity costs. <br /> Safely, it
+              gives you more than a few times the return on your bank interest.
             </div>
             <div className="mainhome__sub_text per">
               Take a stable rate of 15% per year.
@@ -85,7 +85,7 @@ const Styled = {
   MainHomeView: styled.div`
     position: relative;
     ${floatClear};
-    height: 100vh;
+    height: 95vh;
     /* border: 1px solid red; */
     /* background: url("https://bridge197.qodeinteractive.com/wp-content/uploads/2018/03/slider-img-2.png")
       center center / cover no-repeat transparent; */
@@ -94,11 +94,11 @@ const Styled = {
     overflow: visible;
     .mainhome__bg_square {
       position: absolute;
-      width: 40%;
+      width: 45%;
       right: 0;
       top: 0;
       height: 100%;
-      background: #e2e2e2;
+      background: #a5a5a5;
     }
     .maingome__section_image {
       width: 700px;
@@ -115,7 +115,7 @@ const Styled = {
     .mainhome__section_container {
       ${floatClear};
       position: absolute;
-      top: 45%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
