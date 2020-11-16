@@ -26,14 +26,14 @@ export default function Header() {
         <div className="header__section nav">
           <ul className="header__list container">
             <li className="header__list box">
-              <Link href="/">
+              <Link href="/#home">
                 <a className="header__link link">
                   <span className="header__list-text">Home</span>
                 </a>
               </Link>
             </li>
             <li className="header__list box">
-              <Link href="">
+              <Link href="/#profile">
                 <a className="header__link link">
                   <span className="header__list-text">About</span>
                 </a>
@@ -68,7 +68,7 @@ export default function Header() {
               </Link>
             </li>
             <li className="header__list box">
-              <Link href="">
+              <Link href="/#contact">
                 <a className="header__link link">
                   <span className="header__list-text">Contact</span>
                 </a>

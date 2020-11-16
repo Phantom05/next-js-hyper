@@ -20,21 +20,19 @@ import { MainContact } from "@/components/common/form";
 function HomeContainer(props) {
   return (
     <Styled.HomeContainer>
-      <section className="home__section main">
+      <section className="home__section main" id="home">
         <MainHomeView />
       </section>
-      <section>
+      <section id="chapter1">
         <MainChapter />
       </section>
 
       <MainWrapper>
-        <section className="home__section about">
+        <section className="home__section about" id="profile">
           <MainProfile />
         </section>
 
         <section className="home__section cooperation">Cooperation</section>
-
-        <section className="home__section carrer">Carrer</section>
       </MainWrapper>
 
       <section className="home__section sale">
@@ -42,7 +40,7 @@ function HomeContainer(props) {
       </section>
 
       <MainWrapper>
-        <section>
+        <section id="contact">
           <MainContact />
         </section>
         <section className="home__section services">Services</section>
@@ -53,6 +51,11 @@ function HomeContainer(props) {
         <FixedLimitContactButtonBox />
         <FixedUpArrow />
       </MainWrapper>
+      <style global jsx>{`
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </Styled.HomeContainer>
   );
 }
