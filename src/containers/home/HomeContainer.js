@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MainWrapper } from "@/components/common/wrapper";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import styled from "@emotion/styled";
+import DetailsIcon from "@material-ui/icons/Details";
 import {
   color,
   font,
@@ -13,6 +14,8 @@ import {
 import { MainProfile } from "@/components/common/profile";
 import { MainHomeView } from "@/components/common/screen";
 import { MainChapter } from "@/components/common/chapter";
+import { MainSaleSection } from "@/components/common/sale";
+import { MainContact } from "@/components/common/form";
 
 function HomeContainer(props) {
   return (
@@ -23,19 +26,32 @@ function HomeContainer(props) {
       <section>
         <MainChapter />
       </section>
+
       <MainWrapper>
         <section className="home__section about">
           <MainProfile />
         </section>
+
         <section className="home__section cooperation">Cooperation</section>
+
         <section className="home__section carrer">Carrer</section>
+      </MainWrapper>
+
+      <section className="home__section sale">
+        <MainSaleSection />
+      </section>
+
+      <MainWrapper>
+        <section>
+          <MainContact />
+        </section>
         <section className="home__section services">Services</section>
         <section className="home__section company">Company</section>
         <section className="home__section project">Project</section>
-        <section className="home__section view">View</section>
         <section className="home__section contact">Contact Me</section>
 
         <FixedLimitContactButtonBox />
+        <FixedUpArrow />
       </MainWrapper>
     </Styled.HomeContainer>
   );
@@ -68,6 +84,28 @@ function FixedLimitContactButtonBox() {
     </Styled.FixedLimitContactButtonBox>
   );
 }
+
+function FixedUpArrow() {
+  const handleClick = (config) => {
+    const { type } = config;
+    if (type === "up") {
+      console.log("up");
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+  return (
+    <Styled.FixedUpArrow>
+      <span
+        className="fixedup__box"
+        onClick={() => handleClick({ type: "up" })}
+      >
+        <span className="fixedup__box_icon">
+          <DetailsIcon />
+        </span>
+      </span>
+    </Styled.FixedUpArrow>
+  );
+}
 const Styled = {
   HomeContainer: styled.div`
     /* background: ${color.bodyPurpleGradient}; */
@@ -78,13 +116,36 @@ const Styled = {
     .main__fixed_container {
       position: fixed;
       right: 10px;
-      top: 75%;
+      top: 78%;
       width: 205px;
       height: 250px;
     }
 
     .limit_box__container {
       ${floatClear};
+    }
+  `,
+  FixedUpArrow: styled.div`
+    position: fixed;
+    display: inline-block;
+    right: 25px;
+    bottom: 30px;
+    padding: 10px;
+    .fixedup__box {
+      display: inline-block;
+      width: 35px;
+      height: 30px;
+      background: black;
+      /* border-radius: 100%; */
+      border-radius: 3px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .fixedup__box_icon {
+      display: inline-block;
+      color: #d6d6d6;
+      transform: rotate(180deg);
+      text-align: center;
     }
   `,
   FixedLimitContactButtonBox: styled.div`

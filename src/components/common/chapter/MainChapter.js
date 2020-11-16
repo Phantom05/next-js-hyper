@@ -8,6 +8,7 @@ import {
   device,
   textUnderline,
   buttonPurple,
+  buttonWideCircle,
 } from "@/styles/_common";
 function MainChapter(props) {
   return (
@@ -58,9 +59,7 @@ function MainChapter(props) {
           </div>
 
           <div className="chapter__section_box_container">
-            <button className="chapter__section_btn buy">
-              Watch for RBIs.
-            </button>
+            <button className="chapter__section_btn buy">Watch for RBIs</button>
           </div>
         </div>
       </MainWrapper>
@@ -78,11 +77,11 @@ const Styled = {
     .chapter__section_bg_tx {
       position: absolute;
       font-family: "Lora", serif;
-      color: rgba(85, 85, 85, 0.123);
+      color: rgba(109, 109, 109, 0.082);
       font-weight: bold;
-      font-size: 150px;
-      top: -3px;
-      left: -10px;
+      font-size: 200px;
+      top: -20px;
+      left: -20px;
     }
     .chapter__section_line {
       &.box {
@@ -146,6 +145,7 @@ const Styled = {
     }
     .chapter__section_btn {
       &.buy {
+        ${buttonWideCircle("white", "black")};
         color: #ffffff;
         border-color: #000000;
         font-size: 16px;

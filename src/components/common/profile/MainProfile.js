@@ -96,6 +96,7 @@ const Styled = {
       ${floatClear};
       /* border: 1px solid red; */
       position: relative;
+      margin-top: 120px;
     }
     .profile__section {
       float: left;

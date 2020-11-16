@@ -63,6 +63,13 @@ export default function Header() {
             <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
+                  <span className="header__list-text">Support</span>
+                </a>
+              </Link>
+            </li>
+            <li className="header__list box">
+              <Link href="">
+                <a className="header__link link">
                   <span className="header__list-text">Contact</span>
                 </a>
               </Link>

@@ -85,7 +85,7 @@ const Styled = {
   MainHomeView: styled.div`
     position: relative;
     ${floatClear};
-    height: 95vh;
+    height: 60vh;
     /* border: 1px solid red; */
     /* background: url("https://bridge197.qodeinteractive.com/wp-content/uploads/2018/03/slider-img-2.png")
       center center / cover no-repeat transparent; */
@@ -115,7 +115,7 @@ const Styled = {
     .mainhome__section_container {
       ${floatClear};
       position: absolute;
-      top: 42%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
