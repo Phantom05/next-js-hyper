@@ -30,6 +30,11 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Open+Sans&display=swap"
+            rel="stylesheet"
+          />
           <style />
         </Head>
         <body>

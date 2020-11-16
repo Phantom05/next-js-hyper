@@ -7,7 +7,6 @@ import {
   floatClear,
   device,
   textUnderline,
-  buttonPupple,
 } from "@/styles/_common";
 const TextRotatorState = {};
 function TextRotator(props) {

@@ -1,12 +1,12 @@
 const purpleBgGradient = `linear-gradient(180deg, #EBEFFF 0%, #FFFFFF 48.96%, #EBEFFF 99.99%);`;
 const scannerBgGradient = `linear-gradient(0deg, rgba(255, 255, 255, 0) 11.49%, rgba(255, 254, 250, 0.0128372) 12.05%, rgba(65, 244, 255, 0.1372) 17.48%, rgba(65, 244, 255, 0.26) 23.07%, rgba(65, 244, 255, 0.4) 28.76%, rgba(65, 244, 255, 0.5) 34.55%, rgba(65, 244, 255, 0.66) 40.51%, rgba(65, 244, 255, 0.85) 46.73%, #41F4FF 127.1%);`;
 const pinkGradient = `linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)`;
-const puppleGradient = `linear-gradient(
+const purpleGradient = `linear-gradient(
   135deg,
   rgb(113, 74, 253) 0%,
   rgb(146, 135, 227) 100%
 )`;
-const bodyPuppleGradient = `  linear-gradient(
+const bodyPurpleGradient = `  linear-gradient(
   50deg,
   rgba(247, 241, 247, 0.2) 30%,
   rgba(250, 178, 255, 0.2) 65%,
@@ -59,8 +59,8 @@ const _color = {
   purple_bg_gradient: purpleBgGradient,
   scanner_gradient: scannerBgGradient,
   pinkGradient: pinkGradient,
-  puppleGradient,
-  bodyPuppleGradient,
+  purpleGradient,
+  bodyPurpleGradient,
 };
 
 const _device_size = {

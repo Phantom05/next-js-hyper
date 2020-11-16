@@ -12,12 +12,16 @@ import {
 } from "@/styles/_common";
 import { MainProfile } from "@/components/common/profile";
 import { MainHomeView } from "@/components/common/screen";
+import { MainChapter } from "@/components/common/chapter";
 
 function HomeContainer(props) {
   return (
     <Styled.HomeContainer>
       <section className="home__section main">
         <MainHomeView />
+      </section>
+      <section>
+        <MainChapter />
       </section>
       <MainWrapper>
         <section className="home__section about">
@@ -66,10 +70,10 @@ function FixedLimitContactButtonBox() {
 }
 const Styled = {
   HomeContainer: styled.div`
-    /* background: ${color.bodyPuppleGradient}; */
+    /* background: ${color.bodyPurpleGradient}; */
     .home__section {
       position: relative;
-      border: 1px solid #ececec;
+      /* border: 1px solid #ececec; */
     }
     .main__fixed_container {
       position: fixed;

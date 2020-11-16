@@ -6,7 +6,7 @@ import {
   floatClear,
   device,
   textUnderline,
-  buttonPupple,
+  buttonPurple,
 } from "@/styles/_common";
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
@@ -98,7 +98,7 @@ const Styled = {
       right: 0;
       top: 0;
       height: 100%;
-      background: #a5a5a5;
+      background: #d3d3d3;
     }
     .maingome__section_image {
       width: 700px;
@@ -156,11 +156,11 @@ const Styled = {
     .mainhome__button {
       letter-spacing: 1px;
       &.contact {
-        ${buttonPupple()};
+        ${buttonPurple()};
         margin-right: 20px;
       }
       &.production {
-        ${buttonPupple("white", "#cccccc")};
+        ${buttonPurple("white", "#cccccc")};
         &:hover {
           box-shadow: 0px 4px 8px 0px rgba(134, 130, 148, 0.3);
         }
