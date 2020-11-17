@@ -58,7 +58,7 @@ function Footer(props) {
               <h4 className="main__footer_title logo">HYPERCOX.</h4>
               <div>{/* <input type="email" /> */}</div>
               <div className="main__footer_info_box info">
-                HYPERCOX는 안정성을 추구하며, 변화하는 시장에 대응할것입니다.
+                HYPERCOX는 안정성을 추구하며, 변화하는 시장에 실시간 대응합니다.
                 지속적인 연구로 전문가와 자본의 성장을 추구하며 운용합니다.
               </div>
               <div className="main__footer_info_bottom_line"></div>
