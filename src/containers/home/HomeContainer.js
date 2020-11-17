@@ -20,39 +20,48 @@ import { MainContact } from "@/components/common/form";
 function HomeContainer(props) {
   return (
     <Styled.HomeContainer>
-      <section className="home__section main">
+      {/* SECTION: */}
+      <section className="home__section main" id="home">
         <MainHomeView />
       </section>
-      <section>
+
+      {/* SECTION: */}
+      <section id="chapter1">
         <MainChapter />
       </section>
 
+      {/* SECTION: */}
       <MainWrapper>
-        <section className="home__section about">
+        <section className="home__section about" id="profile">
           <MainProfile />
         </section>
-
-        <section className="home__section cooperation">Cooperation</section>
-
-        <section className="home__section carrer">Carrer</section>
       </MainWrapper>
 
+      {/* SECTION: */}
       <section className="home__section sale">
         <MainSaleSection />
       </section>
 
+      {/* SECTION: */}
+      <section className="home__section services">Services</section>
+      <section className="home__section company">Company</section>
+      <section className="home__section project">Project</section>
+
+      {/* SECTION: */}
       <MainWrapper>
-        <section>
+        <section id="contact">
           <MainContact />
         </section>
-        <section className="home__section services">Services</section>
-        <section className="home__section company">Company</section>
-        <section className="home__section project">Project</section>
-        <section className="home__section contact">Contact Me</section>
-
-        <FixedLimitContactButtonBox />
-        <FixedUpArrow />
       </MainWrapper>
+
+      {/* SECTION: */}
+      <FixedLimitContactButtonBox />
+      <FixedUpArrow />
+      <style global jsx>{`
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </Styled.HomeContainer>
   );
 }
@@ -135,11 +144,14 @@ const Styled = {
       display: inline-block;
       width: 35px;
       height: 30px;
-      background: black;
-      /* border-radius: 100%; */
+      background: #1a1a1a;
       border-radius: 3px;
       text-align: center;
       cursor: pointer;
+      transition: 0.5s;
+      &:hover {
+        background: black;
+      }
     }
     .fixedup__box_icon {
       display: inline-block;

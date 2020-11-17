@@ -103,6 +103,11 @@ const Styled = {
     .maingome__section_image {
       width: 700px;
     }
+    @media screen and (max-width: 1400px) {
+      .maingome__section_image {
+        width: 100%;
+      }
+    }
     .mainhome__bg_text {
       position: absolute;
       font-weight: bold;
