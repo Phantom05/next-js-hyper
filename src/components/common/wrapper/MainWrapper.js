@@ -19,7 +19,7 @@ const Styled = {
       margin: auto;
       ${floatClear};
     }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: ${device.main_pc}) {
       .wrap {
         width: 100%;
       }

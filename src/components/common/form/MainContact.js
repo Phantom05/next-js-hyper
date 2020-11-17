@@ -151,6 +151,7 @@ const Styled = {
       margin-bottom: 20px;
     }
     .contact__image {
+      width: 100%;
     }
   `,
 };

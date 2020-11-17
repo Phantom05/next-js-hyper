@@ -100,6 +100,11 @@ const Styled = {
       padding: 15px 0;
       /* border: 1px solid red; */
     }
+    @media screen and (max-width: ${device.main_pc}) {
+      .header__wrap {
+        width: 100%;
+      }
+    }
     .header__section {
       float: left;
       position: relative;
