@@ -81,7 +81,8 @@ const Styled = {
     .rec-arrow-left,
     .rec-arrow-right {
       background: transparent;
-      &:hover:enabled {
+      &:hover:enabled,
+      &:focus:enabled {
         background: #2294c2;
         color: #ffffff;
       }

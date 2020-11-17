@@ -25,6 +25,7 @@
     "react-bootstrap-icons": "^1.1.0",
     "react-dom": "16.13.1",
     "react-elastic-carousel": "^0.9.5",
+    "react-swipeable-views": "^0.13.9",
     "redux": "^4.0.5",
     "styled-components": "^5.2.1",
     "use-immer": "^0.4.1"
