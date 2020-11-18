@@ -144,6 +144,30 @@ export const buttonPurple = (color = "white", bg = _color.purpleGradient) => {
   `;
 };
 
+export const buttonBlueGradient = (
+  color = "white",
+  bg = _color.blueGradient
+) => {
+  return css`
+    position: relative;
+    display: inline-block;
+    background: ${bg};
+    ${font(15, color)};
+    font-weight: bold;
+    border-radius: 40px;
+    padding: 17px 50px;
+    border: 0;
+    box-shadow: 0px 2px 4px 0px rgba(113, 74, 253, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    top: 0;
+    &:hover {
+      top: -2px;
+      box-shadow: 0px 4px 8px 0px rgba(113, 74, 253, 0.3);
+    }
+  `;
+};
+
 export const dotdotdot = css`
   overflow: hidden;
   white-space: nowrap;

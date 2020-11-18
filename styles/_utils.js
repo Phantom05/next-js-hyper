@@ -6,6 +6,13 @@ const purpleGradient = `linear-gradient(
   rgb(113, 74, 253) 0%,
   rgb(146, 135, 227) 100%
 )`;
+
+const blueGradient = `linear-gradient(
+  135deg,
+  rgb(59, 70, 214) 0%,
+  rgb(112, 129, 224) 100%
+)`;
+
 const bodyPurpleGradient = `  linear-gradient(
   50deg,
   rgba(247, 241, 247, 0.2) 30%,
@@ -63,6 +70,7 @@ const _color = {
   pinkGradient: pinkGradient,
   purpleGradient,
   bodyPurpleGradient,
+  blueGradient,
 };
 
 const _device_size = {

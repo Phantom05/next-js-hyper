@@ -16,6 +16,7 @@ import {
   device,
   textUnderline,
   buttonWideCircle,
+  buttonBlueGradient,
 } from "@/styles/_common";
 
 import { capitalizeFirstLetter } from "@/lib/utils";
@@ -393,7 +394,8 @@ const Styled = {
       font-weight: bold;
     }
     .profile__section_download_btn {
-      ${buttonWideCircle("white", "#3e64ff")};
+      ${buttonBlueGradient()};
+      /* ${buttonWideCircle("white", "#3e64ff")}; */
       border-radius: 50px;
       ${font(18, "white")};
       letter-spacing: 1px;

@@ -7,6 +7,7 @@ import {
   device,
   textUnderline,
   buttonPurple,
+  buttonBlueGradient,
 } from "@/styles/_common";
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
@@ -171,7 +172,7 @@ const Styled = {
     .mainhome__button {
       letter-spacing: 1px;
       &.contact {
-        ${buttonPurple()};
+        ${buttonBlueGradient()};
         margin-right: 20px;
       }
       &.production {

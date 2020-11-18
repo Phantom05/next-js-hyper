@@ -51,7 +51,7 @@ function MainService(props) {
 
 const Styled = {
   MainService: styled.div`
-    padding-bottom: 200px;
+    padding-bottom: 170px;
     padding-top: 100px;
     background: ${color.gray_bg3};
     .service__image_box {

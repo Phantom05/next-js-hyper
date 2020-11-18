@@ -57,7 +57,7 @@ export default function Header(props) {
             <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
-                  <span className="header__list-text">Project</span>
+                  <span className="header__list-text">Notice</span>
                 </a>
               </Link>
             </li>

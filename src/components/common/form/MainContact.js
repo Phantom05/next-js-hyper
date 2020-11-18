@@ -90,8 +90,8 @@ function MainContact(props) {
 const Styled = {
   MainContact: styled.div`
     .contact__section__conatiner {
-      padding-top: 150px;
-      padding-bottom: 80px;
+      padding-top: 250px;
+      padding-bottom: 230px;
       ${floatClear};
     }
     .contact__section__title {
