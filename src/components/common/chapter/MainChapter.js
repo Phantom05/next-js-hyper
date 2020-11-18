@@ -123,7 +123,7 @@ function MainChapter(props) {
 
 const Styled = {
   MainChapter: styled.div`
-    background: #f5f5f5 !important;
+    background: ${color.gray_bg3};
     padding-bottom: 150px;
     padding-top: 150px;
     .chapter__carousel_container {

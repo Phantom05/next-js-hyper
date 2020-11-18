@@ -305,8 +305,6 @@ const Styled = {
     }
     .main__footer {
       width: 100%;
-      /* height: 100px; */
-      border-top: 1px solid #eaeaea;
       ${font(14, "white")};
     }
 

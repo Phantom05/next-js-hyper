@@ -50,6 +50,26 @@ function MainProfile(props) {
     ] || [];
 
   const rbiItems = {
+    logn_term: [
+      {
+        name: "POSCO",
+        rate: "8",
+        src: ceo_target3,
+        text: "2020-10-18. POSCO 타점잡고 8%의 수익율 매도진행.",
+      },
+      {
+        name: "POSCO",
+        rate: "8",
+        src: ceo_target3,
+        text: "2020-10-18. POSCO 타점잡고 8%의 수익율 매도진행.",
+      },
+      {
+        name: "POSCO",
+        rate: "8",
+        src: ceo_target3,
+        text: "2020-10-18. POSCO 타점잡고 8%의 수익율 매도진행.",
+      },
+    ],
     stable: [
       {
         name: "POSCO",
@@ -140,6 +160,23 @@ function MainProfile(props) {
       </div>
       <div className="profile__section_target_container">
         <h2 className="profile__section_target_title">Ceo's stock RBI</h2>
+        <p className="profile__section_target_sub">
+          {/* These RBIs are a reference. I'm not just showing off my profit
+          margins, but by revealing my RBI, I'm going to reveal a few examples
+          so that I don't feel ashamed when asked about it by the experts around
+          me. I can find a lot of things in these pictures, and I'm willing to
+          reveal my technology based on trust. These are the RBIs that are being
+          built after anguish and research. Mid- and long-term investments,
+          stability investments, and aggressive investments are divided into two
+          types of RBIs. */}
+          해당 타점들은 참고 사항입니다. 단순히 수익율을 자랑하는것이 아닌, 저의
+          타점을 공개함으로써 주변 전문가들한태 타점을 물어봤을때 부끄럽지
+          않게끔 몇가지 사례를 공개합니다. 해당 사진들에서 많은 것들을 찾을 수
+          있고, 저의 영업 비밀이 될 수 있는 기술이 노출됨을 무릎쓰고 신뢰를
+          바탕으로 공개합니다. 고뇌와 연구 끝에 만들어져가고 있는 타점들 입니다.
+          중장기투자, 안정성투자, 공격형 투자로 나뉘어서 타점을 나눠 진행합니다.
+        </p>
+
         <div className="profile__section_target_con">
           <h3 className="profile__section_target_sub_title">
             stable investment RBI
@@ -172,6 +209,7 @@ function MainProfile(props) {
           <h3 className="profile__section_target_sub_title">
             aggressive investment RBI
           </h3>
+
           <div className="profile__section_target_rows">
             {rbiItems.aggressive.map((item, idx) => {
               return (
@@ -224,6 +262,11 @@ const Styled = {
       font-family: "Lora", serif;
       /* text-align: right; */
       color: #424242;
+      font-weight: 600;
+    }
+    .profile__section_target_sub {
+      ${font(16)};
+      line-height: 18px;
     }
 
     .profile__section_target_info_item_sub_title {
@@ -272,6 +315,9 @@ const Styled = {
       }
     }
     .profile__section_target_container {
+      margin-top: 20px;
+    }
+    .profile__section_target_con {
       margin-top: 20px;
     }
     .profile__section_container {
@@ -356,3 +402,32 @@ const Styled = {
 };
 
 export default MainProfile;
+
+{
+  /* <h3 className="profile__section_target_sub_title">
+medium and long term investment RBI
+</h3>
+<div className="profile__section_target_rows">
+{rbiItems.logn_term.map((item, idx) => {
+  return (
+    <div className="profile__section_target_box" key={idx}>
+      <div className="profile__section_target_info_box">
+        <div className="profile__section_target_info_item image">
+          <img src={item.src} alt="" className="no-drag" />
+        </div>
+        <div className="profile__section_target_info_item text">
+          <div>
+            <div className="profile__section_target_info_item_sub_title">
+              종목명 : {item.name}
+            </div>
+          </div>
+          <div className="profile__section_target_info_item_sub">
+            {item.text}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+})}
+</div> */
+}

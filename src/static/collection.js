@@ -7,6 +7,7 @@ import ceo_target5 from "@/static/report/ceo_target5.png";
 import ceo_target6 from "@/static/report/ceo_target6.png";
 import ceo_target7 from "@/static/report/ceo_target7.png";
 import ceo_target8 from "@/static/report/ceo_target8.png";
+import main_view_bg from "@/static/images/main_view_bg.jpg";
 
 export {
   main_profile,
@@ -18,4 +19,5 @@ export {
   ceo_target6,
   ceo_target7,
   ceo_target8,
+  main_view_bg,
 };

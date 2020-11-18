@@ -10,6 +10,7 @@ import {
 } from "@/styles/_common";
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
+import { main_view_bg } from "@/static/collection";
 
 function MainHomeView(props) {
   const rotatorList = [
@@ -23,7 +24,7 @@ function MainHomeView(props) {
   ];
   return (
     <Styled.MainHomeView>
-      <div className="mainhome__bg_square"></div>
+      {/* <div className="mainhome__bg_square"></div> */}
       <div className="mainhome__section_container">
         <div className="mainhome__bg_text">Keep it safe.</div>
         <MainWrapper>
@@ -64,11 +65,11 @@ function MainHomeView(props) {
 
           {/* SECTION: */}
           <div className="mainhome__section picture">
-            <img
+            {/* <img
               src="https://bridge197.qodeinteractive.com/wp-content/uploads/2018/03/slider-img-2.png"
               alt=""
               className="maingome__section_image"
-            />
+            /> */}
             {/* <img
               src="https://promo-theme.com/somo/wp-content/uploads/2019/11/bg7-scaled.jpg"
               alt=""
@@ -85,10 +86,14 @@ const Styled = {
   MainHomeView: styled.div`
     position: relative;
     ${floatClear};
-    height: 60vh;
+    /* height: 60vh; */
+    height: 92vh;
+    background: url(${main_view_bg});
     /* border: 1px solid red; */
     /* background: url("https://bridge197.qodeinteractive.com/wp-content/uploads/2018/03/slider-img-2.png")
       center center / cover no-repeat transparent; */
+    background-position: 40% 50%;
+    background-size: cover;
     padding: 0px;
     margin: 0px auto;
     overflow: visible;
@@ -115,6 +120,7 @@ const Styled = {
       z-index: -1;
       left: 0;
       top: 0;
+      color: rgba(172, 172, 172, 0.089);
     }
 
     .mainhome__section_container {
@@ -143,6 +149,9 @@ const Styled = {
       }
     }
     .mainhome__text_section {
+      img {
+        margin-right: 10px;
+      }
       &.introduce {
         ${font(20, "#666")};
         font-weight: 300;
@@ -155,6 +164,7 @@ const Styled = {
         font-weight: bold;
         font-family: "Circular", sans-serif;
         -webkit-font-smoothing: antialiased;
+        color: #ececec;
       }
     }
 

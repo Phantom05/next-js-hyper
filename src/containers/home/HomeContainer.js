@@ -16,6 +16,8 @@ import { MainHomeView } from "@/components/common/screen";
 import { MainChapter } from "@/components/common/chapter";
 import { MainSaleSection } from "@/components/common/sale";
 import { MainContact } from "@/components/common/form";
+import { MainPartner } from "@/components/common/partner";
+import { MainService } from "@/components/common/service";
 
 function HomeContainer(props) {
   return (
@@ -38,14 +40,17 @@ function HomeContainer(props) {
       </MainWrapper>
 
       {/* SECTION: */}
+      <section className="home__section services">
+        <MainService />
+      </section>
+
+      {/* <section className="home__section company">Company</section>
+      <section className="home__section project">Project</section> */}
+
+      {/* SECTION: */}
       <section className="home__section sale">
         <MainSaleSection />
       </section>
-
-      {/* SECTION: */}
-      <section className="home__section services">Services</section>
-      <section className="home__section company">Company</section>
-      <section className="home__section project">Project</section>
 
       {/* SECTION: */}
       <MainWrapper>
@@ -53,6 +58,11 @@ function HomeContainer(props) {
           <MainContact />
         </section>
       </MainWrapper>
+
+      {/* SECTION: */}
+      <section id="partner">
+        <MainPartner />
+      </section>
 
       {/* SECTION: */}
       <FixedLimitContactButtonBox />
@@ -98,7 +108,7 @@ function FixedUpArrow() {
   const handleClick = (config) => {
     const { type } = config;
     if (type === "up") {
-      console.log("up");
+      console.log(config);
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   };
@@ -106,7 +116,7 @@ function FixedUpArrow() {
     <Styled.FixedUpArrow>
       <span
         className="fixedup__box"
-        onClick={() => handleClick({ type: "up" })}
+        onClick={(e) => handleClick({ type: "up", e })}
       >
         <span className="fixedup__box_icon">
           <DetailsIcon />

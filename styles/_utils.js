@@ -56,6 +56,8 @@ const _color = {
   disable_btn: `#CEDAE0`,
   complete_btn: `#8938AF`,
   complete_btn_hover: `#75259A`,
+  gold: `#e4b96c`,
+  gray_bg3: `#f5f5f5`,
   purple_bg_gradient: purpleBgGradient,
   scanner_gradient: scannerBgGradient,
   pinkGradient: pinkGradient,
