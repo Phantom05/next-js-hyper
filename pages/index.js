@@ -3,7 +3,7 @@ import { MainTemplate } from "@/components/base/template";
 import { Footer } from "@/components/common/footer";
 import { Header } from "@/components/common/header";
 import { HomeContainer } from "@/containers/home";
-
+import { ScrollToTop } from "@/components/base/scroll";
 export default function Home() {
   const brandName = protocol.brandname || "";
   return (

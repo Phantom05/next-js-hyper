@@ -37,8 +37,29 @@ function MainHomeView(props) {
   const mainTitleThirdRef = useRef(null);
   const welcomeTextRef = useRef(null);
 
+  const overlayFirstCur = overlayFirst.current;
+  const overlaySecondCur = overlaySecond.current;
+  const overlayThirdCur = overlayThird.current;
+  const bgtextRefCur = bgtextRef.current;
+  const mediaRefCur = mediaRef.current;
+  const welcomeTextRefCur = welcomeTextRef.current;
+  const mainTitleFirstRefCur = mainTitleFirstRef.current;
+  const mainTitleSecondRefCur = mainTitleSecondRef.current;
+  const mainTitleThirdRefCur = mainTitleThirdRef.current;
+
+  const gsapAllReady =
+    overlayFirstCur &&
+    overlaySecondCur &&
+    overlayThirdCur &&
+    bgtextRefCur &&
+    mediaRefCur &&
+    welcomeTextRefCur &&
+    mainTitleFirstRefCur &&
+    mainTitleSecondRefCur &&
+    mainTitleThirdRefCur;
+
   useEffect(() => {
-    if (bgtextRef.current) {
+    if (gsapAllReady) {
       // gsap.to(target, 1, { x: 100, y: 100 });
       // gsap.to(target, 1, { x: 100, y: 100 });
       // gsap.from(bgtextRef.current, {
@@ -120,7 +141,17 @@ function MainHomeView(props) {
         ease: "expo.inOut",
       });
     }
-  }, [bgtextRef.current]);
+  }, [
+    overlayFirstCur &&
+      overlaySecondCur &&
+      overlayThirdCur &&
+      bgtextRefCur &&
+      mediaRefCur &&
+      welcomeTextRefCur &&
+      mainTitleFirstRefCur &&
+      mainTitleSecondRefCur &&
+      mainTitleThirdRefCur,
+  ]);
   return (
     <Styled.MainHomeView>
       <div className="mainView__bg" ref={mediaRef}></div>

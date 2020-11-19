@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { PersonCircle } from "react-bootstrap-icons";
@@ -8,11 +9,58 @@ import {
   device,
   textUnderline,
 } from "@/styles/_common";
+import { useImmer } from "use-immer";
+import cx from "classnames";
+import _ from "lodash";
+import { useRouter } from "next/router";
 
-export default function Header(props) {
-  const { theme = "white" } = props;
+const HeaderState = {
+  hide: true,
+  pageYOffset: 0,
+};
+
+function HeaderController(props) {
+  const [values, setValues] = useImmer(HeaderState);
+  const handleScroll = () => {
+    const { pageYOffset } = window;
+    const deltaY = pageYOffset - values.pageYOffset;
+    const hide = pageYOffset <= 10;
+    // && deltaY >= 0;
+
+    console.log("wow", deltaY, pageYOffset, hide);
+    console.log(values);
+    setValues((draft) => {
+      draft.hide = hide;
+      draft.pageYOffset = pageYOffset;
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", _.throttle(handleScroll, 300));
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Styled.Header id="home" theme={theme}>
+    <Styled.HeaderController>
+      <div className={cx("header_scroll", { active: !values.hide })}>
+        <Header theme={"white"} />
+      </div>
+      <div className="header__top">
+        <Header theme={props.theme} />
+      </div>
+    </Styled.HeaderController>
+  );
+}
+
+function Header(props) {
+  const { theme = "white" } = props;
+  const router = useRouter();
+
+  console.log(router);
+  return (
+    <Styled.Header theme={theme} className="header__container">
       <div className="header__wrap">
         <div className="header__section brand">
           <Link href="/">
@@ -27,9 +75,16 @@ export default function Header(props) {
         <div className="header__section nav">
           <ul className="header__list container">
             <li className="header__list box">
-              <Link href="/#home">
+              <Link href="/">
                 <a className="header__link link">
                   <span className="header__list-text">Home</span>
+                </a>
+              </Link>
+            </li>
+            <li className="header__list box">
+              <Link href="/#vision">
+                <a className="header__link link">
+                  <span className="header__list-text">Vision</span>
                 </a>
               </Link>
             </li>
@@ -41,19 +96,13 @@ export default function Header(props) {
               </Link>
             </li>
             <li className="header__list box">
-              <Link href="">
+              <Link href="/#service">
                 <a className="header__link link">
                   <span className="header__list-text">Services</span>
                 </a>
               </Link>
             </li>
-            <li className="header__list box">
-              <Link href="">
-                <a className="header__link link">
-                  <span className="header__list-text">Vision</span>
-                </a>
-              </Link>
-            </li>
+
             <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
@@ -62,7 +111,7 @@ export default function Header(props) {
               </Link>
             </li>
             <li className="header__list box">
-              <Link href="">
+              <Link href="/support">
                 <a className="header__link link">
                   <span className="header__list-text">Support</span>
                 </a>
@@ -89,18 +138,44 @@ export default function Header(props) {
   );
 }
 
+export default HeaderController;
+
 const Styled = {
+  HeaderController: styled.div`
+    .header_scroll {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      /* height: 70px; */
+      top: -70px;
+      transition: 0.3s linear;
+      opacity: 0;
+      background: white;
+      z-index: 5000;
+      border-bottom: #ececec;
+      box-shadow: 3px 3px 3px rgba(163, 163, 163, 0.171);
+      .header__container {
+        padding-top: 7px;
+      }
+      &.active {
+        top: 0;
+        opacity: 1;
+      }
+    }
+  `,
   Header: styled.div`
     ${floatClear};
-    padding-top: 20px;
     ${({ theme }) => theme === "black" && `background: black;`};
     z-index: 500;
+    padding-top: 20px;
+
     .header__wrap {
       width: ${device.header_pc};
       margin: auto;
       position: relative;
       ${floatClear};
       padding: 15px 0;
+
       /* border: 1px solid red; */
     }
     @media screen and (max-width: ${device.main_pc}) {
