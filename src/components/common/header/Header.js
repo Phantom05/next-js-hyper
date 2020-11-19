@@ -9,9 +9,10 @@ import {
   textUnderline,
 } from "@/styles/_common";
 
-export default function Header() {
+export default function Header(props) {
+  const { theme = "white" } = props;
   return (
-    <Styled.Header>
+    <Styled.Header id="home" theme={theme}>
       <div className="header__wrap">
         <div className="header__section brand">
           <Link href="/">
@@ -56,7 +57,7 @@ export default function Header() {
             <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
-                  <span className="header__list-text">Project</span>
+                  <span className="header__list-text">Notice</span>
                 </a>
               </Link>
             </li>
@@ -92,6 +93,8 @@ const Styled = {
   Header: styled.div`
     ${floatClear};
     padding-top: 20px;
+    ${({ theme }) => theme === "black" && `background: black;`};
+    z-index: 500;
     .header__wrap {
       width: ${device.header_pc};
       margin: auto;
@@ -121,6 +124,7 @@ const Styled = {
           position: relative;
           width: 285px;
           color: #000000;
+          ${({ theme }) => theme === "black" && `color: #fff;`};
           margin-top: 16px;
           &:after {
             position: absolute;
@@ -154,7 +158,8 @@ const Styled = {
     .header__list-text {
       display: inline-block;
       ${textUnderline(color.blue_font, 2, 0.25)};
-      color: #000;
+      color: #272727;
+      ${({ theme }) => theme === "black" && `color: #ececec;`};
       padding-bottom: 4px;
     }
     .link {
@@ -163,6 +168,8 @@ const Styled = {
       display: inline-block;
       padding: 20px 20px;
       ${font(16, "#000")}
+      ${({ theme }) => theme === "black" && `color: #ececec;`};
+      /* color:#ececec; */
       /* border:1px solid #ececec; */
       &:hover .header__list-text {
         &:before {
@@ -177,11 +184,12 @@ const Styled = {
       padding: 15px;
       padding-top: 12px;
       margin-left: 17px;
-      color: gray;
+      color: #c2c2c2;
       position: relative;
       top: 3px;
     }
     .header-brand-logo-text {
+      ${({ theme }) => theme === "black" && `color: #ececec;`};
       span {
         color: white;
       }

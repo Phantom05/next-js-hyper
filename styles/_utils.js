@@ -6,6 +6,13 @@ const purpleGradient = `linear-gradient(
   rgb(113, 74, 253) 0%,
   rgb(146, 135, 227) 100%
 )`;
+
+const blueGradient = `linear-gradient(
+  135deg,
+  rgb(59, 70, 214) 0%,
+  rgb(112, 129, 224) 100%
+)`;
+
 const bodyPurpleGradient = `  linear-gradient(
   50deg,
   rgba(247, 241, 247, 0.2) 30%,
@@ -56,11 +63,14 @@ const _color = {
   disable_btn: `#CEDAE0`,
   complete_btn: `#8938AF`,
   complete_btn_hover: `#75259A`,
+  gold: `#e4b96c`,
+  gray_bg3: `#f5f5f5`,
   purple_bg_gradient: purpleBgGradient,
   scanner_gradient: scannerBgGradient,
   pinkGradient: pinkGradient,
   purpleGradient,
   bodyPurpleGradient,
+  blueGradient,
 };
 
 const _device_size = {

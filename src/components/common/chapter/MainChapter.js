@@ -10,6 +10,56 @@ import {
   buttonPurple,
   buttonWideCircle,
 } from "@/styles/_common";
+
+import { MainCarousel } from "@/components/common/carousel";
+
+const sliderItems = [
+  {
+    id: 1,
+    src:
+      "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F999E06345A640A762F",
+  },
+  {
+    id: 2,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 3,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 4,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 5,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 6,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 7,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 8,
+    src:
+      "https://img.etoday.co.kr/pto_db/2019/12/600/20191210145343_1400051_501_284.jpg",
+  },
+  {
+    id: 9,
+    src: "https://news.einfomax.co.kr/news/photo/201802/3435818_49764_571.jpg",
+  },
+];
+
 function MainChapter(props) {
   return (
     <Styled.MainChapter>
@@ -63,16 +113,24 @@ function MainChapter(props) {
           </div>
         </div>
       </MainWrapper>
+
+      <div className="chapter__carousel_container">
+        <MainCarousel items={sliderItems} pagination={false} />
+      </div>
     </Styled.MainChapter>
   );
 }
 
 const Styled = {
   MainChapter: styled.div`
-    background: #f5f5f5 !important;
+    background: ${color.gray_bg3};
+    padding-bottom: 150px;
+    padding-top: 150px;
+    .chapter__carousel_container {
+      padding: 0 20px;
+    }
     .chapter__section_container {
       padding-bottom: 150px;
-      padding-top: 150px;
     }
     .chapter__section_bg_tx {
       position: absolute;
