@@ -117,7 +117,7 @@ function FixedUpArrow() {
   const handleClick = (config) => {
     const { type } = config;
     if (type === "up") {
-      console.log(config);
+      // console.log(config);
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   };

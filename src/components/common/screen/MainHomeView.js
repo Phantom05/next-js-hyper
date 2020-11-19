@@ -59,18 +59,7 @@ function MainHomeView(props) {
     mainTitleThirdRefCur;
 
   useEffect(() => {
-    if (gsapAllReady) {
-      // gsap.to(target, 1, { x: 100, y: 100 });
-      // gsap.to(target, 1, { x: 100, y: 100 });
-      // gsap.from(bgtextRef.current, {
-      //   duration: 1.5,
-      //   delay: 1.5,
-      //   opacity: 0,
-      //   y: "20",
-      //   ease: "expo.inOut",
-      //   stagger: 1,
-      // });
-
+    setTimeout(() => {
       /* OVERLAY */
       gsap.to(overlayFirst.current, {
         duration: 1.5,
@@ -140,7 +129,22 @@ function MainHomeView(props) {
         y: "200%",
         ease: "expo.inOut",
       });
+    }, 10);
+    if (gsapAllReady) {
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.from(bgtextRef.current, {
+      //   duration: 1.5,
+      //   delay: 1.5,
+      //   opacity: 0,
+      //   y: "20",
+      //   ease: "expo.inOut",
+      //   stagger: 1,
+      // });
     }
+    return () => {
+      gsap.killTweensOf(mediaRef.current);
+    };
   }, [
     overlayFirstCur &&
       overlaySecondCur &&

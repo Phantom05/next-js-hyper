@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 const HeaderState = {
   hide: true,
   pageYOffset: 0,
+  ready: false,
 };
 
 function HeaderController(props) {
@@ -42,44 +43,84 @@ function HeaderController(props) {
     };
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setValues((draft) => {
+        draft.ready = true;
+      });
+    }, 1000);
+  }, []);
+
   return (
     <Styled.HeaderController>
       <div className={cx("header_scroll", { active: !values.hide })}>
-        <Header theme={"white"} />
+        <Header theme={"white"} ready={values.ready} />
       </div>
       <div className="header__top">
-        <Header theme={props.theme} />
+        <Header theme={props.theme} ready={values.ready} />
       </div>
     </Styled.HeaderController>
   );
 }
 
 function Header(props) {
-  const { theme = "white" } = props;
+  const { theme = "white", ready = false } = props;
   const router = useRouter();
+  const [values, setValues] = useImmer(HeaderState);
 
-  console.log(router);
+  // console.log(router);
+  // console.log(isMainPage);
+  const isMainPage = router.pathname === "/";
+
+  const handleClick = (config) => {
+    const { type } = config;
+    if (type === "upScroll") {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <Styled.Header theme={theme} className="header__container">
       <div className="header__wrap">
         <div className="header__section brand">
-          <Link href="/">
-            <a className="header-brand-logo">
+          {isMainPage ? (
+            <a
+              className="header-brand-logo"
+              onClick={() => handleClick({ type: "upScroll" })}
+            >
               <h2 className="header-brand-logo-text">
                 <span>H</span>
                 YPERCOX INVEST
               </h2>
             </a>
-          </Link>
+          ) : (
+            <Link href="/">
+              <a className="header-brand-logo">
+                <h2 className="header-brand-logo-text">
+                  <span>H</span>
+                  YPERCOX INVEST
+                </h2>
+              </a>
+            </Link>
+          )}
         </div>
         <div className="header__section nav">
           <ul className="header__list container">
             <li className="header__list box">
-              <Link href="/">
-                <a className="header__link link">
+              {isMainPage ? (
+                <a
+                  className="header__link link"
+                  onClick={() => handleClick({ type: "upScroll" })}
+                >
                   <span className="header__list-text">Home</span>
                 </a>
-              </Link>
+              ) : (
+                <Link href="/">
+                  <a className="header__link link">
+                    <span className="header__list-text">Home</span>
+                  </a>
+                </Link>
+              )}
             </li>
             <li className="header__list box">
               <Link href="/#vision">
@@ -168,7 +209,9 @@ const Styled = {
     ${({ theme }) => theme === "black" && `background: black;`};
     z-index: 500;
     padding-top: 20px;
-
+    .header__link {
+      cursor: pointer;
+    }
     .header__wrap {
       width: ${device.header_pc};
       margin: auto;
@@ -201,6 +244,7 @@ const Styled = {
           color: #000000;
           ${({ theme }) => theme === "black" && `color: #fff;`};
           margin-top: 16px;
+          cursor: pointer;
           &:after {
             position: absolute;
             top: 50%;
