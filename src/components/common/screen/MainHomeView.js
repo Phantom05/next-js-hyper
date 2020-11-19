@@ -12,9 +12,10 @@ import {
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
 import { main_view_bg } from "@/static/collection";
-
+import gsap from "gsap";
 // console.log(TweenLite, "TweenLite");
 // console.log(gsap, "gsap");
+
 function MainHomeView(props) {
   const rotatorList = [
     "assets",
@@ -91,7 +92,7 @@ function MainHomeView(props) {
       });
 
       /* MAIN TITLE TEXT */
-      welcomeTextRef;
+      // welcomeTextRef;
       gsap.from(welcomeTextRef.current, {
         duration: 1.5,
         delay: 1,
@@ -118,13 +119,6 @@ function MainHomeView(props) {
         y: "200%",
         ease: "expo.inOut",
       });
-
-      // gsap.to(window, 1.5, {
-      //   scrollTo: {
-      //     y: 500,
-      //     ease: "expo.inOut",
-      //   },
-      // });
     }
   }, [bgtextRef.current]);
   return (
@@ -236,6 +230,7 @@ const Styled = {
       top: 0;
       width: 100%;
       height: 100%;
+      z-index: 0;
     }
     .overlay {
       position: absolute;
@@ -312,6 +307,7 @@ const Styled = {
         width: 50%;
         left: 0;
         margin-top: 70px;
+        z-index: 2;
       }
       &.picture {
         right: 0;

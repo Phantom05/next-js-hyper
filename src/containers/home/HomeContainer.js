@@ -47,6 +47,11 @@ function HomeContainer(props) {
         <MainService />
       </section>
 
+      {/* SECTION: */}
+      {/* <section className="home__section services">
+        <MainService />
+      </section> */}
+
       {/* <section className="home__section company">Company</section>
       <section className="home__section project">Project</section> */}
 
