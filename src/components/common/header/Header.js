@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
+import { Global, css } from "@emotion/react";
 import { PersonCircle } from "react-bootstrap-icons";
 import {
   color,
@@ -53,23 +54,25 @@ function HeaderController(props) {
 
   return (
     <Styled.HeaderController>
-      <div className={cx("header_scroll", { active: !values.hide })}>
+      <div
+        className={cx("header_scroll", {
+          active: !values.hide,
+          hidden: props.crossEnabled === false,
+        })}
+      >
         <Header theme={"white"} ready={values.ready} />
       </div>
       <div className="header__top">
-        <Header theme={props.theme} ready={values.ready} />
+        <Header theme={props.theme} ready={values.ready} fixed={props.fixed} />
       </div>
     </Styled.HeaderController>
   );
 }
 
 function Header(props) {
-  const { theme = "white", ready = false } = props;
+  const { theme = "white", fixed = false } = props;
   const router = useRouter();
   const [values, setValues] = useImmer(HeaderState);
-
-  // console.log(router);
-  // console.log(isMainPage);
   const isMainPage = router.pathname === "/";
 
   const handleClick = (config) => {
@@ -80,7 +83,16 @@ function Header(props) {
   };
 
   return (
-    <Styled.Header theme={theme} className="header__container">
+    <Styled.Header theme={theme} className="header__container" fixed={fixed}>
+      {fixed && (
+        <Global
+          styles={css`
+            body {
+              padding-top: 112px;
+            }
+          `}
+        />
+      )}
       <div className="header__wrap">
         <div className="header__section brand">
           {isMainPage ? (
@@ -144,10 +156,18 @@ function Header(props) {
               </Link>
             </li>
 
-            <li className="header__list box">
+            {/* <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
                   <span className="header__list-text">Notice</span>
+                </a>
+              </Link>
+            </li> */}
+
+            <li className="header__list box">
+              <Link href="/#contact">
+                <a className="header__link link">
+                  <span className="header__list-text">Contact</span>
                 </a>
               </Link>
             </li>
@@ -155,13 +175,6 @@ function Header(props) {
               <Link href="/support">
                 <a className="header__link link">
                   <span className="header__list-text">Support</span>
-                </a>
-              </Link>
-            </li>
-            <li className="header__list box">
-              <Link href="/#contact">
-                <a className="header__link link">
-                  <span className="header__list-text">Contact</span>
                 </a>
               </Link>
             </li>
@@ -202,13 +215,20 @@ const Styled = {
         top: 0;
         opacity: 1;
       }
+      &.hidden {
+        display: none;
+      }
     }
   `,
   Header: styled.div`
     ${floatClear};
+    background: white;
     ${({ theme }) => theme === "black" && `background: black;`};
-    z-index: 500;
+    box-shadow: 3px 3px 3px rgba(163, 163, 163, 0.171);
+    z-index: 5000;
     padding-top: 20px;
+    ${({ fixed }) =>
+      fixed === true && `position:fixed;left:0;top:0;width:100%;`};
     .header__link {
       cursor: pointer;
     }
