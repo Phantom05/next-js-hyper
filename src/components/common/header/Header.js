@@ -94,7 +94,7 @@ const Styled = {
     ${floatClear};
     padding-top: 20px;
     ${({ theme }) => theme === "black" && `background: black;`};
-
+    z-index: 500;
     .header__wrap {
       width: ${device.header_pc};
       margin: auto;

@@ -136,6 +136,7 @@ const Styled = {
       animation-duration: 18s; /* (6 * 2 * 1.5s) */
       animation-name: rotate6fast;
       animation-iteration-count: infinite;
+      animation-delay: 1s;
     }
   `,
 };

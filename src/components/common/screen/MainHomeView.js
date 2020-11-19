@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 import {
   color,
@@ -13,6 +13,8 @@ import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
 import { main_view_bg } from "@/static/collection";
 
+// console.log(TweenLite, "TweenLite");
+// console.log(gsap, "gsap");
 function MainHomeView(props) {
   const rotatorList = [
     "assets",
@@ -23,15 +25,128 @@ function MainHomeView(props) {
     "peace",
     "assets",
   ];
+
+  const bgtextRef = useRef(null);
+  const overlayFirst = useRef(null);
+  const overlaySecond = useRef(null);
+  const overlayThird = useRef(null);
+  const mediaRef = useRef(null);
+  const mainTitleFirstRef = useRef(null);
+  const mainTitleSecondRef = useRef(null);
+  const mainTitleThirdRef = useRef(null);
+  const welcomeTextRef = useRef(null);
+
+  useEffect(() => {
+    if (bgtextRef.current) {
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.from(bgtextRef.current, {
+      //   duration: 1.5,
+      //   delay: 1.5,
+      //   opacity: 0,
+      //   y: "20",
+      //   ease: "expo.inOut",
+      //   stagger: 1,
+      // });
+
+      /* OVERLAY */
+      gsap.to(overlayFirst.current, {
+        duration: 1.5,
+        delay: 0.5,
+        top: "-100%",
+        ease: "expo.inOut",
+      });
+
+      gsap.to(overlaySecond.current, {
+        duration: 1.5,
+        delay: 0.6,
+        top: "-100%",
+        ease: "expo.inOut",
+      });
+
+      gsap.to(overlayThird.current, {
+        duration: 1.5,
+        delay: 0.7,
+        top: "-100%",
+        ease: "expo.inOut",
+      });
+
+      /* BACKGROUND TEXT */
+      gsap.from(bgtextRef.current, {
+        duration: 2,
+        delay: 1,
+        x: "10%",
+        ease: "expo.inOut",
+        opacity: 0,
+      });
+
+      /* MEDIA */
+      gsap.from(mediaRef.current, {
+        duration: 2,
+        delay: 1.5,
+        stagger: 0.08,
+        opacity: 0,
+        x: "-20",
+        ease: "expo.inOut",
+      });
+
+      /* MAIN TITLE TEXT */
+      welcomeTextRef;
+      gsap.from(welcomeTextRef.current, {
+        duration: 1.5,
+        delay: 1,
+        // y: "100%",
+        ease: "expo.inOut",
+        opacity: 0,
+      });
+      gsap.from(mainTitleFirstRef.current, {
+        duration: 1.5,
+        delay: 1,
+        y: "100%",
+        ease: "expo.inOut",
+      });
+
+      gsap.from(mainTitleSecondRef.current, {
+        duration: 1.5,
+        delay: 1.2,
+        y: "100%",
+        ease: "expo.inOut",
+      });
+      gsap.from(mainTitleThirdRef.current, {
+        duration: 1.5,
+        delay: 1.3,
+        y: "200%",
+        ease: "expo.inOut",
+      });
+
+      // gsap.to(window, 1.5, {
+      //   scrollTo: {
+      //     y: 500,
+      //     ease: "expo.inOut",
+      //   },
+      // });
+    }
+  }, [bgtextRef.current]);
   return (
     <Styled.MainHomeView>
+      <div className="mainView__bg" ref={mediaRef}></div>
       {/* <div className="mainhome__bg_square"></div> */}
+      <div className="overlay first" ref={overlayFirst}>
+        {/* <div className="welcome">Welcome</div> */}
+      </div>
+      <div className="overlay second" ref={overlaySecond}></div>
+      <div className="overlay third" ref={overlayThird}></div>
       <div className="mainhome__section_container">
-        <div className="mainhome__bg_text">Keep it safe.</div>
+        <div className="mainhome__bg_text" ref={bgtextRef}>
+          Keep it safe.
+        </div>
         <MainWrapper>
           {/* SECTION: */}
           <div className="mainhome__section text">
-            <p className="mainhome__text_section introduce">
+            <p
+              className="mainhome__text_section introduce"
+              ref={welcomeTextRef}
+            >
               <img
                 src="https://themebubble.com/demo/webify/wp-content/themes/webify/landing/assets/img/icons/24.png"
                 alt=""
@@ -40,27 +155,39 @@ function MainHomeView(props) {
             </p>
 
             <div className="mainhome__text_section main_title">
-              Keep it safe.
-              <br /> <TextRotator prevText="Precious" list={rotatorList} />
+              <div ref={mainTitleFirstRef}>
+                Keep it safe.
+                <br /> <TextRotator prevText="Precious" list={rotatorList} />
+              </div>
             </div>
             {/* <div>Securely expand your assets.</div> */}
 
-            <div className="mainhome__sub_text top">
-              Experts protect your assets and respond to the market in real
-              time.
+            <div className="mainhome__sub_text_container">
+              <div ref={mainTitleSecondRef}>
+                <div className="mainhome__sub_text top">
+                  Experts protect your assets and respond to the market in real
+                  time.
+                </div>
+                <div className="mainhome__sub_text bottom">
+                  Save valuable time and save opportunity costs. <br /> Safely,
+                  it gives you more than a few times the return on your bank
+                  interest.
+                </div>
+                <div className="mainhome__sub_text per">
+                  Take a stable rate of 15% per year.
+                </div>
+              </div>
             </div>
-            <div className="mainhome__sub_text bottom">
-              Save valuable time and save opportunity costs. <br /> Safely, it
-              gives you more than a few times the return on your bank interest.
-            </div>
-            <div className="mainhome__sub_text per">
-              Take a stable rate of 15% per year.
-            </div>
+
             <div className="mainhome__button_container">
-              <button className="mainhome__button contact">Contact Now</button>
-              <button className="mainhome__button production">
-                Production
-              </button>
+              <div ref={mainTitleThirdRef}>
+                <button className="mainhome__button contact">
+                  Contact Now
+                </button>
+                <button className="mainhome__button production">
+                  Production
+                </button>
+              </div>
             </div>
           </div>
 
@@ -89,7 +216,7 @@ const Styled = {
     ${floatClear};
     /* height: 60vh; */
     height: 92vh;
-    background: url(${main_view_bg});
+    /* background: url(${main_view_bg}); */
     /* border: 1px solid red; */
     /* background: url("https://bridge197.qodeinteractive.com/wp-content/uploads/2018/03/slider-img-2.png")
       center center / cover no-repeat transparent; */
@@ -97,7 +224,50 @@ const Styled = {
     background-size: cover;
     padding: 0px;
     margin: 0px auto;
-    overflow: visible;
+    /* overflow: visible; */
+    overflow: hidden;
+    background: black;
+    .mainView__bg {
+      background: url(${main_view_bg});
+      background-position: 40% 50%;
+      background-size: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      z-index: 99;
+      overflow: hidden;
+      text-align: center;
+      width: ${100 / 3}%;
+      &.first {
+        background: #181717;
+      }
+      &.second {
+        background: #181717;
+        left: 33.33%;
+      }
+      &.third {
+        background: #181717;
+        left: 66.66%;
+      }
+    }
+    .welcome {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%, -50%);
+      color: white;
+      text-align: center;
+      width: 100%;
+      border: 1px solid red;
+    }
     .mainhome__bg_square {
       position: absolute;
       width: 45%;
@@ -166,7 +336,17 @@ const Styled = {
         font-family: "Circular", sans-serif;
         -webkit-font-smoothing: antialiased;
         color: #ececec;
+        overflow: hidden;
+        height: 160px;
       }
+    }
+    .mainhome__sub_text_container {
+      height: 120px;
+      overflow: hidden;
+    }
+    .mainhome__button_container {
+      height: 54px;
+      overflow: hidden;
     }
 
     .mainhome__button {
