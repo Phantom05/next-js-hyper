@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
@@ -21,7 +21,10 @@
     "immer": "^7.0.14",
     "lodash": "^4.17.20",
     "next": "^10.0.0",
+    "next-babel-minify": "^1.0.0",
+    "next-compose-plugins": "^2.2.1",
     "next-images": "^1.6.2",
+    "next-progressbar": "^1.0.0",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^6.0.2",
     "pure-react-carousel": "^1.27.6",
