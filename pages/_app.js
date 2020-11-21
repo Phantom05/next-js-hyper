@@ -7,9 +7,19 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "@/store/reducers/rootReducer";
+import withReduxSaga from "next-redux-saga";
+import rootSaga from "@/store/sagas/rootSaga";
+import createSagaMiddleware from "redux-saga";
 
-const configureSotre = () => {
-  const store = createStore(rootReducer);
+const configureSotre = (initialState, options) => {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware];
+  const enhancer =
+    process.env.NODE_ENV === "production"
+      ? compose(applyMiddleware(...middlewares))
+      : composeWithDevTools(applyMiddleware(...middlewares));
+  const store = createStore(rootReducer, initialState, enhancer);
+  store.sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };
 
@@ -45,7 +55,7 @@ class RootApp extends App {
   }
 }
 
-export default wrapper.withRedux(RootApp);
+export default wrapper.withRedux(withReduxSaga(RootApp));
 
 // const RootApp = ({ Component, ...others }) => <Component {...others} />;
 
