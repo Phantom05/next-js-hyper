@@ -8,32 +8,34 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { useImmer } from "use-immer";
 import {
-  countPlusAction,
-  countMinusAction,
   countSetPlusAction,
   countSetMinusAction,
+  sagaTestAction,
 } from "@/store/actions";
+import axios from "axios";
 
 const HomeState = {
   setCount: 0,
 };
-function Home() {
+function Home(props) {
+  const { pageProps: serverState } = props;
   const brandName = protocol.brandname || "";
-  // const router = useRouter();
-  const { count, users } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { count } = useSelector((state) => state);
   const [values, setValues] = useImmer(HomeState);
+
+  // NOTE: click event
   const handleClick = (config) => {
     const { type } = config;
     if (type === "up") {
-      const setCount = values.setCount === 0 ? 1 : values.setCount;
-      dispatch(countSetPlusAction(setCount));
+      // dispatch(countSetPlusAction(values.setCount));
+      dispatch(sagaTestAction({ what: "the hell" }));
     }
     if (type === "down") {
-      const setCount = values.setCount === 0 ? 1 : values.setCount;
-      dispatch(countSetMinusAction(setCount));
+      dispatch(countSetMinusAction(values.setCount));
     }
   };
+  // NOTE: change event
   const handleChange = (config) => {
     const { e } = config;
     const value = +e.target.value;
@@ -41,6 +43,9 @@ function Home() {
       draft.setCount = value;
     });
   };
+
+  console.log(serverState, "serverState");
+
   return (
     <div className="container">
       <MainTemplate
@@ -61,6 +66,7 @@ function Home() {
             <div>
               count : <span>{count.number}</span>
             </div>
+            <div>{JSON.stringify(serverState.data)}</div>
           </div>
         </div>
 
@@ -70,4 +76,17 @@ function Home() {
   );
 }
 
+Home.getInitialProps = async (ctx) => {
+  const { count } = ctx.store.getState();
+  console.log(1);
+  const { data } = await axios.get(
+    "https://jsonplaceholder.typicode.com/todos/1"
+  );
+  console.log(data);
+  console.log(2);
+  return { count, data };
+};
+
 export default Home;
+
+// const router = useRouter();

@@ -66,7 +66,7 @@ const Styled = {
       padding: 7px 3px;
     }
 
-    .rotator .rotator-container .rotator-item:first-child {
+    .rotator .rotator-container .rotator-item:first-of-child {
       position: relative;
     }
 
@@ -75,7 +75,7 @@ const Styled = {
     .rotator {
       ${({ items }) => {
         const itemsArray = items.map((item, key) => {
-          return `.rotator-container .rotator-item:nth-child(${key + 2}) {
+          return `.rotator-container .rotator-item:nth-of-child(${key + 2}) {
              transform: translateY(${key + 1}00%);
         }`;
         });
