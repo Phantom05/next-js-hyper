@@ -12,6 +12,7 @@ import {
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
 import { main_view_bg } from "@/static/collection";
+import { useDidUpdateEffect } from "@/lib/utils";
 import gsap from "gsap";
 // console.log(TweenLite, "TweenLite");
 // console.log(gsap, "gsap");
@@ -59,6 +60,9 @@ function MainHomeView(props) {
     mainTitleThirdRefCur;
 
   useEffect(() => {
+    // if (!gsapAllReady) {
+    //   return;
+    // }
     setTimeout(() => {
       /* OVERLAY */
       gsap.to(overlayFirst.current, {
@@ -128,6 +132,7 @@ function MainHomeView(props) {
         delay: 1.3,
         y: "200%",
         ease: "expo.inOut",
+        yoyo: true,
       });
     }, 10);
     if (gsapAllReady) {
@@ -143,17 +148,17 @@ function MainHomeView(props) {
       // });
     }
     return () => {
-      gsap.killTweensOf(mediaRef.current);
+      // gsap.kill(mediaRef.current);
     };
   }, [
-    overlayFirstCur &&
-      overlaySecondCur &&
-      overlayThirdCur &&
-      bgtextRefCur &&
-      mediaRefCur &&
-      welcomeTextRefCur &&
-      mainTitleFirstRefCur &&
-      mainTitleSecondRefCur &&
+    overlayFirstCur ||
+      overlaySecondCur ||
+      overlayThirdCur ||
+      bgtextRefCur ||
+      mediaRefCur ||
+      welcomeTextRefCur ||
+      mainTitleFirstRefCur ||
+      mainTitleSecondRefCur ||
       mainTitleThirdRefCur,
   ]);
   return (

@@ -23,33 +23,35 @@ const HeaderState = {
 
 function HeaderController(props) {
   const [values, setValues] = useImmer(HeaderState);
+
   const handleScroll = () => {
     const { pageYOffset } = window;
     const deltaY = pageYOffset - values.pageYOffset;
-    const hide = pageYOffset <= 10;
+    let hide = pageYOffset <= 10;
     // && deltaY >= 0;
-
-    console.log("wow", deltaY, pageYOffset, hide);
-    console.log(values);
-    setValues((draft) => {
-      draft.hide = hide;
-      draft.pageYOffset = pageYOffset;
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", _.throttle(handleScroll, 300));
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
+    // console.log(values);
+    // console.log(pageYOffset, "pageYOffset");
+    // console.log(hide, "hide");
+    // console.log("wow", deltaY, pageYOffset, hide);
+    if (
+      (pageYOffset <= 10 && hide === true) ||
+      (pageYOffset === 0 && hide === false) ||
+      (pageYOffset > 0 && values.hide === true)
+    ) {
+      hide = pageYOffset !== 0 ? false : true;
       setValues((draft) => {
-        draft.ready = true;
+        draft.hide = hide;
+        draft.pageYOffset = pageYOffset;
       });
-    }, 1000);
+    }
+  };
+  const throttledHandleScroll = _.throttle(handleScroll, 300);
+
+  useEffect(() => {
+    window.addEventListener("scroll", throttledHandleScroll);
+    return () => {
+      window.removeEventListener("scroll", throttledHandleScroll);
+    };
   }, []);
 
   return (

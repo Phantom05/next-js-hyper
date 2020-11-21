@@ -2,11 +2,29 @@ import React from "react";
 import App, { Container } from "next/app";
 import Head from "next/head";
 import "styles/global.scss";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import withRedux, { createWrapper } from "next-redux-wrapper";
+import { Provider } from "react-redux";
+import { createStore, compose, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import rootReducer from "@/store/reducers/rootReducer";
 
-// import Layout from "../components/material/Layout";
+const configureSotre = () => {
+  const store = createStore(rootReducer);
+  return store;
+};
 
-export default class RootApp extends App {
+const wrapper = createWrapper(configureSotre, {
+  debug: process.env.NODE_ENV === "development,",
+});
+
+class RootApp extends App {
+  static async getInitialProps(context) {
+    const { Component, ctx } = context;
+    const { store, isServer } = ctx; // next의 context에서 store를 받을 수 있게된다.
+
+    const pageProps = (await Component.getInitialProps?.(ctx)) || {};
+    return { pageProps };
+  }
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -18,17 +36,40 @@ export default class RootApp extends App {
   render() {
     const { Component, ...other } = this.props;
     return (
-      <Container>
-        {/* <Head>
-                    <title>Static Website</title>
-                {/* </Head> */}
-        {/* <Layout> */}
-        <Component {...other} />
-        {/* </Layout> */}
-      </Container>
+      <>
+        <Container>
+          <Component {...other} />
+        </Container>
+      </>
     );
   }
 }
+
+export default wrapper.withRedux(RootApp);
+
+// const RootApp = ({ Component, ...others }) => <Component {...others} />;
+
+// const Test = ({ Component, store, ...other }) => {
+//   return (
+//     <Provider store={store}>
+//       <Container>
+//         <Component {...other} />
+//       </Container>
+//     </Provider>
+//   );
+// };
+
+// const configureStore = (initialState, options) => {
+//   const middlewares = []; // 미들웨어들을 넣으면 된다.
+//   const enhancer =
+//     process.env.NODE_ENV === "production"
+//       ? compose(applyMiddleware(...middlewares))
+//       : composeWithDevTools(applyMiddleware(...middlewares));
+//   const store = createStore(reducer, initialState, enhancer);
+//   return store;
+// };
+
+// export default withRedux(configureStore)(Test);
 
 {
   /* <style jsx global>{`
@@ -46,3 +87,17 @@ body {
 }
 `}</style> */
 }
+
+// const createStore = intialState =>{
+//   const sagaMiddleware = createSagaMiddleware();
+
+//   const store = createStore(
+//     reducer,
+//     intialState,
+//     applyMiddleware(sagaMiddleware)
+//   );
+
+//   sagaMiddleware.run(rootSaga);
+
+//   return store;
+// }

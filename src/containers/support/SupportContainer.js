@@ -64,34 +64,26 @@ function VerticalTabs() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="공지사항" {...a11yProps(0)} />
+        <Tab label="자주묻는질문" {...a11yProps(1)} />
+        <Tab label="이용안내" {...a11yProps(2)} />
+        <Tab label="사칭주의" {...a11yProps(3)} />
+        <Tab label="QnA" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        공지사항
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        자주묻는질문
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        이용안내
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        사칭주의
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
+        QnA
       </TabPanel>
     </div>
   );
@@ -101,6 +93,7 @@ function SupportContainer(props) {
   return (
     <Styled.SupportContainer>
       <MainWrapper>
+        <h1 className="support__title">Support</h1>
         <div className="container">
           <VerticalTabs />
         </div>
@@ -115,6 +108,9 @@ const Styled = {
   SupportContainer: styled.div`
     .container {
       margin-top: 50px;
+    }
+    .support__title {
+      font-size: 50px;
     }
   `,
 };
