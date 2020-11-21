@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { MainWrapper } from "@/components/common/wrapper";
 import {
@@ -10,8 +10,14 @@ import {
   buttonPurple,
   buttonWideCircle,
 } from "@/styles/_common";
-
+import { useImmer } from "use-immer";
 import { MainCarousel } from "@/components/common/carousel";
+// import { TweenLite as Tween, TimelineMax as Timeline, gsap } from "gsap";
+import { gsap } from "gsap";
+import { Controller, Scene } from "react-scrollmagic";
+import { Tween, Timeline, SplitLetters } from "react-gsap";
+import ScrollAnimation from "react-animate-on-scroll";
+import VisibilitySensor from "react-visibility-sensor";
 
 const sliderItems = [
   {
@@ -60,13 +66,44 @@ const sliderItems = [
   },
 ];
 
+const MainChapterState = {
+  hello: "world",
+};
 function MainChapter(props) {
+  const [values, setValues] = useImmer(MainChapterState);
+  const targetRef = useRef(null);
+  // const t12 = new Timeline();
+  // const targetTrigger = t12.from(targetRef.current, { x: 100 });
+
+  useEffect(() => {
+    // const ScrollMagic = dynamic(() => require("scrollmagic"));
+    if (typeof window !== undefined) {
+      // const controller = new ScrollMagic.Controller();
+      // new ScrollMagic.Scene({
+      //   triggerElement: "#triggerCarousel",
+      //   duration: 400,
+      // })
+      //   .on("enter", function (event) {
+      //     console.log("들어옴!");
+      //     gsap.from(targetRef.current, { y: 50 });
+      //     return;
+      //   })
+      //   .on("leave", function (event) {
+      //     console.log("떠남");
+      //   })
+      //   .addTo(controller);
+    }
+  }, []);
+
+  const onChange = (isVisible) => {
+    console.log(isVisible, "isVisible?");
+  };
   return (
     <Styled.MainChapter>
       <MainWrapper>
         <div className="chapter__section_container">
           <h2 className="chapter__section title">Chapter I</h2>
-          <div className="chapter__section_line box">
+          <div className="chapter__section_line box" id="triggerCarousel">
             <div className="chapter__section_line item"></div>
             <div className="chapter__section_line item"></div>
           </div>
@@ -114,7 +151,24 @@ function MainChapter(props) {
         </div>
       </MainWrapper>
 
-      <div className="chapter__carousel_container">
+      <div className="chapter__carousel_container" id="textpin">
+        <VisibilitySensor onChange={onChange}>
+          <div id="triggerCarousel"></div>
+        </VisibilitySensor>
+
+        {/* <Controller>
+          <Scene
+            triggerElement="#triggerCarousel"
+            duration={300}
+            indicators
+            classToggle="play"
+          >
+            <div className="j-up-animation">
+              <MainCarousel items={sliderItems} pagination={false} />
+            </div>
+          </Scene>
+        </Controller> */}
+
         <MainCarousel items={sliderItems} pagination={false} />
       </div>
     </Styled.MainChapter>
@@ -126,6 +180,24 @@ const Styled = {
     background: ${color.gray_bg3};
     padding-bottom: 150px;
     padding-top: 150px;
+    .tween {
+      position: relative;
+    }
+    .display-none {
+      opacity: 0;
+    }
+
+    .j-up-animation {
+      position: relative;
+      opacity: 0;
+      top: 40px;
+      transition: 1s ease-in-out;
+    }
+    .play {
+      opacity: 1;
+      top: 0;
+    }
+
     .chapter__carousel_container {
       padding: 0 20px;
     }
@@ -223,3 +295,52 @@ const Styled = {
 };
 
 export default MainChapter;
+
+// const ClassToggleStyled = styled.div`
+//   .section {
+//     height: 20vh;
+//   }
+
+//   .test {
+//     transition: width 0.3s ease-out;
+//     width: 100px;
+//     height: 100px;
+//     background-color: red;
+//     margin: 0 !important;
+
+//     &.yellow {
+//       background-color: yellow;
+//     }
+//   }
+//   .zap {
+//     width: 100%;
+//   }
+// `;
+// const ClassToggle = () => (
+//   <ClassToggleStyled>
+//     <div className="section" />
+//     <div id="trigger" />
+//     <Controller>
+//       <Scene
+//         duration={200}
+//         classToggle="zap"
+//         triggerElement="#trigger"
+//         indicators={true}
+//       >
+//         {(progress, event) => (
+//           <div className="test">
+//             Pin Test {event.type} {progress}
+//           </div>
+//         )}
+//       </Scene>
+//       <Scene
+//         classToggle={[".test", "yellow"]}
+//         reverse={false}
+//         indicators={true}
+//       >
+//         <div>Toggle other class</div>
+//       </Scene>
+//     </Controller>
+//     <div className="section" />
+//   </ClassToggleStyled>
+// );

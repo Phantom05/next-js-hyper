@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
+import { Global, css } from "@emotion/react";
 import { PersonCircle } from "react-bootstrap-icons";
 import {
   color,
@@ -8,28 +10,136 @@ import {
   device,
   textUnderline,
 } from "@/styles/_common";
+import { useImmer } from "use-immer";
+import cx from "classnames";
+import _ from "lodash";
+import { useRouter } from "next/router";
 
-export default function Header(props) {
-  const { theme = "white" } = props;
+const HeaderState = {
+  hide: true,
+  pageYOffset: 0,
+  ready: false,
+};
+
+function HeaderController(props) {
+  const [values, setValues] = useImmer(HeaderState);
+
+  const handleScroll = () => {
+    const { pageYOffset } = window;
+    const deltaY = pageYOffset - values.pageYOffset;
+    let hide = pageYOffset <= 10;
+    // && deltaY >= 0;
+    // console.log(values);
+    // console.log(pageYOffset, "pageYOffset");
+    // console.log(hide, "hide");
+    // console.log("wow", deltaY, pageYOffset, hide);
+    if (
+      (pageYOffset <= 10 && hide === true) ||
+      (pageYOffset === 0 && hide === false) ||
+      (pageYOffset > 0 && values.hide === true)
+    ) {
+      hide = pageYOffset !== 0 ? false : true;
+      setValues((draft) => {
+        draft.hide = hide;
+        draft.pageYOffset = pageYOffset;
+      });
+    }
+  };
+  const throttledHandleScroll = _.throttle(handleScroll, 300);
+
+  useEffect(() => {
+    window.addEventListener("scroll", throttledHandleScroll);
+    return () => {
+      window.removeEventListener("scroll", throttledHandleScroll);
+    };
+  }, []);
+
   return (
-    <Styled.Header id="home" theme={theme}>
+    <Styled.HeaderController>
+      <div
+        className={cx("header_scroll", {
+          active: !values.hide,
+          hidden: props.crossEnabled === false,
+        })}
+      >
+        <Header theme={"white"} ready={values.ready} />
+      </div>
+      <div className="header__top">
+        <Header theme={props.theme} ready={values.ready} fixed={props.fixed} />
+      </div>
+    </Styled.HeaderController>
+  );
+}
+
+function Header(props) {
+  const { theme = "white", fixed = false } = props;
+  const router = useRouter();
+  const [values, setValues] = useImmer(HeaderState);
+  const isMainPage = router.pathname === "/";
+
+  const handleClick = (config) => {
+    const { type } = config;
+    if (type === "upScroll") {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <Styled.Header theme={theme} className="header__container" fixed={fixed}>
+      {fixed && (
+        <Global
+          styles={css`
+            body {
+              padding-top: 112px;
+            }
+          `}
+        />
+      )}
       <div className="header__wrap">
         <div className="header__section brand">
-          <Link href="/">
-            <a className="header-brand-logo">
+          {isMainPage ? (
+            <a
+              className="header-brand-logo"
+              onClick={() => handleClick({ type: "upScroll" })}
+            >
               <h2 className="header-brand-logo-text">
                 <span>H</span>
                 YPERCOX INVEST
               </h2>
             </a>
-          </Link>
+          ) : (
+            <Link href="/">
+              <a className="header-brand-logo">
+                <h2 className="header-brand-logo-text">
+                  <span>H</span>
+                  YPERCOX INVEST
+                </h2>
+              </a>
+            </Link>
+          )}
         </div>
         <div className="header__section nav">
           <ul className="header__list container">
             <li className="header__list box">
-              <Link href="/#home">
-                <a className="header__link link">
+              {isMainPage ? (
+                <a
+                  className="header__link link"
+                  onClick={() => handleClick({ type: "upScroll" })}
+                >
                   <span className="header__list-text">Home</span>
+                </a>
+              ) : (
+                <Link href="/">
+                  <a className="header__link link">
+                    <span className="header__list-text">Home</span>
+                  </a>
+                </Link>
+              )}
+            </li>
+            <li className="header__list box">
+              <Link href="/#vision">
+                <a className="header__link link">
+                  <span className="header__list-text">Vision</span>
                 </a>
               </Link>
             </li>
@@ -41,37 +151,32 @@ export default function Header(props) {
               </Link>
             </li>
             <li className="header__list box">
-              <Link href="">
+              <Link href="/#service">
                 <a className="header__link link">
                   <span className="header__list-text">Services</span>
                 </a>
               </Link>
             </li>
-            <li className="header__list box">
-              <Link href="">
-                <a className="header__link link">
-                  <span className="header__list-text">Vision</span>
-                </a>
-              </Link>
-            </li>
-            <li className="header__list box">
+
+            {/* <li className="header__list box">
               <Link href="">
                 <a className="header__link link">
                   <span className="header__list-text">Notice</span>
                 </a>
               </Link>
-            </li>
-            <li className="header__list box">
-              <Link href="">
-                <a className="header__link link">
-                  <span className="header__list-text">Support</span>
-                </a>
-              </Link>
-            </li>
+            </li> */}
+
             <li className="header__list box">
               <Link href="/#contact">
                 <a className="header__link link">
                   <span className="header__list-text">Contact</span>
+                </a>
+              </Link>
+            </li>
+            <li className="header__list box">
+              <Link href="/support">
+                <a className="header__link link">
+                  <span className="header__list-text">Support</span>
                 </a>
               </Link>
             </li>
@@ -89,18 +194,53 @@ export default function Header(props) {
   );
 }
 
+export default HeaderController;
+
 const Styled = {
+  HeaderController: styled.div`
+    .header_scroll {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      /* height: 70px; */
+      top: -70px;
+      transition: 0.3s linear;
+      opacity: 0;
+      background: white;
+      z-index: 5000;
+      border-bottom: #ececec;
+      box-shadow: 3px 3px 3px rgba(163, 163, 163, 0.171);
+      .header__container {
+        padding-top: 7px;
+      }
+      &.active {
+        top: 0;
+        opacity: 1;
+      }
+      &.hidden {
+        display: none;
+      }
+    }
+  `,
   Header: styled.div`
     ${floatClear};
-    padding-top: 20px;
+    background: white;
     ${({ theme }) => theme === "black" && `background: black;`};
-    z-index: 500;
+    box-shadow: 3px 3px 3px rgba(163, 163, 163, 0.171);
+    z-index: 5000;
+    padding-top: 20px;
+    ${({ fixed }) =>
+      fixed === true && `position:fixed;left:0;top:0;width:100%;`};
+    .header__link {
+      cursor: pointer;
+    }
     .header__wrap {
       width: ${device.header_pc};
       margin: auto;
       position: relative;
       ${floatClear};
       padding: 15px 0;
+
       /* border: 1px solid red; */
     }
     @media screen and (max-width: ${device.main_pc}) {
@@ -126,6 +266,7 @@ const Styled = {
           color: #000000;
           ${({ theme }) => theme === "black" && `color: #fff;`};
           margin-top: 16px;
+          cursor: pointer;
           &:after {
             position: absolute;
             top: 50%;

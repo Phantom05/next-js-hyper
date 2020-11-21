@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { MainWrapper } from "@/components/common/wrapper";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -11,6 +11,7 @@ import {
   device,
   textUnderline,
 } from "@/styles/_common";
+
 import { MainProfile } from "@/components/common/profile";
 import { MainHomeView } from "@/components/common/screen";
 import { MainChapter } from "@/components/common/chapter";
@@ -31,7 +32,7 @@ function HomeContainer(props) {
       #232323 */}
 
       {/* SECTION: */}
-      <section id="chapter1">
+      <section id="vision">
         <MainChapter />
       </section>
 
@@ -43,9 +44,14 @@ function HomeContainer(props) {
       </MainWrapper>
 
       {/* SECTION: */}
-      <section className="home__section services">
+      <section className="home__section services" id="service">
         <MainService />
       </section>
+
+      {/* SECTION: */}
+      {/* <section className="home__section services">
+        <MainService />
+      </section> */}
 
       {/* <section className="home__section company">Company</section>
       <section className="home__section project">Project</section> */}
@@ -111,7 +117,7 @@ function FixedUpArrow() {
   const handleClick = (config) => {
     const { type } = config;
     if (type === "up") {
-      console.log(config);
+      // console.log(config);
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   };

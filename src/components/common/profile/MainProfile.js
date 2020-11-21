@@ -20,6 +20,7 @@ import {
 } from "@/styles/_common";
 
 import { capitalizeFirstLetter } from "@/lib/utils";
+import ScrollAnimation from "react-animate-on-scroll";
 
 function MainProfile(props) {
   const aboutItems =
@@ -131,11 +132,11 @@ function MainProfile(props) {
             </div>
 
             <div className="profile__section_info_box">
-              {aboutItems.map((item, key) => {
+              {aboutItems.map((item, idx) => {
                 return (
                   <div
                     className="profile__section_profile about_rows"
-                    key={key}
+                    key={idx}
                   >
                     <div className="profile__section_profile about_item label">
                       {capitalizeFirstLetter(item.label)}:
@@ -182,6 +183,7 @@ function MainProfile(props) {
           <h3 className="profile__section_target_sub_title">
             stable investment RBI
           </h3>
+
           <div className="profile__section_target_rows">
             {rbiItems.stable.map((item, idx) => {
               return (

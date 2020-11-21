@@ -12,9 +12,11 @@ import {
 import { MainWrapper } from "@/components/common/wrapper";
 import { TextRotator } from "@/components/common/rotator";
 import { main_view_bg } from "@/static/collection";
-
+import { useDidUpdateEffect } from "@/lib/utils";
+import gsap from "gsap";
 // console.log(TweenLite, "TweenLite");
 // console.log(gsap, "gsap");
+
 function MainHomeView(props) {
   const rotatorList = [
     "assets",
@@ -36,19 +38,32 @@ function MainHomeView(props) {
   const mainTitleThirdRef = useRef(null);
   const welcomeTextRef = useRef(null);
 
-  useEffect(() => {
-    if (bgtextRef.current) {
-      // gsap.to(target, 1, { x: 100, y: 100 });
-      // gsap.to(target, 1, { x: 100, y: 100 });
-      // gsap.from(bgtextRef.current, {
-      //   duration: 1.5,
-      //   delay: 1.5,
-      //   opacity: 0,
-      //   y: "20",
-      //   ease: "expo.inOut",
-      //   stagger: 1,
-      // });
+  const overlayFirstCur = overlayFirst.current;
+  const overlaySecondCur = overlaySecond.current;
+  const overlayThirdCur = overlayThird.current;
+  const bgtextRefCur = bgtextRef.current;
+  const mediaRefCur = mediaRef.current;
+  const welcomeTextRefCur = welcomeTextRef.current;
+  const mainTitleFirstRefCur = mainTitleFirstRef.current;
+  const mainTitleSecondRefCur = mainTitleSecondRef.current;
+  const mainTitleThirdRefCur = mainTitleThirdRef.current;
 
+  const gsapAllReady =
+    overlayFirstCur &&
+    overlaySecondCur &&
+    overlayThirdCur &&
+    bgtextRefCur &&
+    mediaRefCur &&
+    welcomeTextRefCur &&
+    mainTitleFirstRefCur &&
+    mainTitleSecondRefCur &&
+    mainTitleThirdRefCur;
+
+  useEffect(() => {
+    // if (!gsapAllReady) {
+    //   return;
+    // }
+    setTimeout(() => {
       /* OVERLAY */
       gsap.to(overlayFirst.current, {
         duration: 1.5,
@@ -91,7 +106,7 @@ function MainHomeView(props) {
       });
 
       /* MAIN TITLE TEXT */
-      welcomeTextRef;
+      // welcomeTextRef;
       gsap.from(welcomeTextRef.current, {
         duration: 1.5,
         delay: 1,
@@ -117,16 +132,35 @@ function MainHomeView(props) {
         delay: 1.3,
         y: "200%",
         ease: "expo.inOut",
+        yoyo: true,
       });
-
-      // gsap.to(window, 1.5, {
-      //   scrollTo: {
-      //     y: 500,
-      //     ease: "expo.inOut",
-      //   },
+    }, 10);
+    if (gsapAllReady) {
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.to(target, 1, { x: 100, y: 100 });
+      // gsap.from(bgtextRef.current, {
+      //   duration: 1.5,
+      //   delay: 1.5,
+      //   opacity: 0,
+      //   y: "20",
+      //   ease: "expo.inOut",
+      //   stagger: 1,
       // });
     }
-  }, [bgtextRef.current]);
+    return () => {
+      // gsap.kill(mediaRef.current);
+    };
+  }, [
+    overlayFirstCur ||
+      overlaySecondCur ||
+      overlayThirdCur ||
+      bgtextRefCur ||
+      mediaRefCur ||
+      welcomeTextRefCur ||
+      mainTitleFirstRefCur ||
+      mainTitleSecondRefCur ||
+      mainTitleThirdRefCur,
+  ]);
   return (
     <Styled.MainHomeView>
       <div className="mainView__bg" ref={mediaRef}></div>
@@ -236,6 +270,7 @@ const Styled = {
       top: 0;
       width: 100%;
       height: 100%;
+      z-index: 0;
     }
     .overlay {
       position: absolute;
@@ -312,6 +347,7 @@ const Styled = {
         width: 50%;
         left: 0;
         margin-top: 70px;
+        z-index: 2;
       }
       &.picture {
         right: 0;
