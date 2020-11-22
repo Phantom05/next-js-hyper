@@ -14,7 +14,7 @@ import { getUserApi } from "@/lib/api";
  * @param {*} action
  */
 function* handleTest(action) {
-  console.log(action, "saga in");
+  console.log(action, "saga in t");
   yield put(actions.sagaTestAction_pending());
   const payload = action.payload || {};
   const { data } = yield call(getUserApi, payload);
