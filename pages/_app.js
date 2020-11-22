@@ -47,9 +47,7 @@ class RootApp extends App {
     const { Component, ...other } = this.props;
     return (
       <>
-        <Container>
-          <Component {...other} />
-        </Container>
+        <Component {...other} />
       </>
     );
   }

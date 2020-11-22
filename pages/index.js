@@ -13,6 +13,7 @@ import {
   sagaTestAction,
 } from "@/store/actions";
 import axios from "axios";
+import { Home as apiHome } from "@/lib/api";
 
 const HomeState = {
   setCount: 0,
@@ -45,6 +46,8 @@ function Home(props) {
   };
 
   console.log(serverState, "serverState");
+  console.log(count, "countReducer");
+  const isLoading = count.sagaTest.pending === true;
 
   return (
     <div className="container">
@@ -54,6 +57,7 @@ function Home(props) {
         footer={<Footer />}
         header={<Header theme="black" />}
       >
+        {isLoading && <div>Loading...</div>}
         <div style={{ height: "200px", textAlign: "center" }}>
           <div style={{ marginTop: "130px" }}>
             <input
@@ -78,15 +82,14 @@ function Home(props) {
 
 Home.getInitialProps = async (ctx) => {
   const { count } = ctx.store.getState();
-  console.log(1);
-  const { data } = await axios.get(
-    "https://jsonplaceholder.typicode.com/todos/1"
-  );
-  console.log(data);
-  console.log(2);
+
+  const { data } = await apiHome.test();
+  const test = await apiHome.main();
+  console.log(test, "test");
+  // console.log(data);
+
   return { count, data };
 };
-
 export default Home;
 
 // const router = useRouter();
