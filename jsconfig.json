@@ -7,7 +7,10 @@
       "@/static/*": ["src/static/*"],
       "@/containers/*": ["src/containers/*"],
       "@/setting/*": ["src/setting/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/server/*": ["server/*"],
+      "@/config/*": ["config/*"],
+      "@/database/*": ["database/*"]
       // "@/store/*": ["store/*"]
     }
   },

@@ -13,8 +13,9 @@ import { getUserApi } from "@/lib/api";
  * NOTE: saga test
  * @param {*} action
  */
+// 사가 다듬기
 function* handleTest(action) {
-  console.log(action, "saga in");
+  console.log(action, "saga in t");
   yield put(actions.sagaTestAction_pending());
   const payload = action.payload || {};
   const { data } = yield call(getUserApi, payload);

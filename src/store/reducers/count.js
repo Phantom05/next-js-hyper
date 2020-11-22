@@ -4,6 +4,11 @@ import produce from "immer";
 
 export const initialState = {
   number: 0,
+  sagaTest: {
+    pending: null,
+    succesS: null,
+    failure: null,
+  },
 };
 
 export default handleActions(
@@ -32,16 +37,25 @@ export default handleActions(
     [actions.SAGA_TEST_PENDING]: (state, { payload: diff }) => {
       return produce(state, (draft) => {
         console.log("SAGA_TEST_PENDING");
+        draft.sagaTest.pending = true;
+        draft.sagaTest.success = null;
+        draft.sagaTest.failure = null;
       });
     },
     [actions.SAGA_TEST_SUCCESS]: (state, { payload: diff }) => {
       return produce(state, (draft) => {
         console.log("SAGA_TEST_SUCCESS");
+        draft.sagaTest.pending = null;
+        draft.sagaTest.success = true;
+        draft.sagaTest.failure = null;
       });
     },
     [actions.SAGA_TEST_FAILURE]: (state, { payload: diff }) => {
       return produce(state, (draft) => {
         console.log("SAGA_TEST_FAILURE");
+        draft.sagaTest.pending = null;
+        draft.sagaTest.success = null;
+        draft.sagaTest.failure = true;
       });
     },
   },
