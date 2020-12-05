@@ -111,25 +111,27 @@ function MainChapter(props) {
             <div className="chapter__section_sub box">
               <div className="chapter__section_bg_tx">S</div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                이제 첫 발을 내딛었습니다. 오랜기간 준비해온 실력을 바탕으로
+                자본운용사업에 뛰어들었습니다. ceo인 제가 소액을 직접적으로
+                트레이딩 하는 기간은 시범운영기간인 2년 뿐이고 추후에는 더큰
+                돈을 운용하기 위해 발판을 마련하고 있습니다. 떄문에 이시기에
+                믿고 투자해주신 분들께는 사업을 확장해나가도 꾸준히 혜택을
+                드리려고 합니다. 앞으로 사업이 잘 커가면서 서로 레버리지 하는
+                관계가 되었으면 합니다. 하이퍼콕스 인베스트는 타 경제
+                에널리스트들처럼 종목만 추천해주고 나몰라라 하지 않고 직접
+                트레이더들이 운용하며 안정성을 추구합니다.
               </p>
             </div>
             <div className="chapter__section_sub box">
               <div className="chapter__section_sub box_title">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                If you minimize the loss rather than increase the profit, the
+                profit follows..
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in
+                워낙 안정성을 최고로 뽑다보니 광고들 처럼 수익율이 높지
+                않습니다. 제 투자 원칙은 1순위도 10순위도 안정성입니다. 급하게
+                가려고 하다가 엎어지는 경우를 많이 봤습니다. 저 또한 전재산을
+                날려봤습니다.
               </p>
             </div>
             <div className="chapter__section_sub box">

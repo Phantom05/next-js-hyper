@@ -20,6 +20,7 @@ const HomeState = {
 };
 function Home(props) {
   const { pageProps: serverState } = props;
+  console.log(props);
   const brandName = protocol.brandname || "";
   const dispatch = useDispatch();
   const { count } = useSelector((state) => state);
@@ -57,7 +58,7 @@ function Home(props) {
         footer={<Footer />}
         header={<Header theme="black" />}
       >
-        {isLoading && <div>Loading...</div>}
+        {/* {isLoading && <div>Loading...</div>}
         <div style={{ height: "200px", textAlign: "center" }}>
           <div style={{ marginTop: "130px" }}>
             <input
@@ -72,9 +73,9 @@ function Home(props) {
             </div>
             <div>{JSON.stringify(serverState.data)}</div>
           </div>
-        </div>
+        </div> */}
 
-        {/* <HomeContainer /> */}
+        <HomeContainer />
       </MainTemplate>
     </div>
   );

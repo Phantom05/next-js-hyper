@@ -165,6 +165,13 @@ function Header(props) {
                 </a>
               </Link>
             </li> */}
+            <li className="header__list box">
+              <Link href="/price">
+                <a className="header__link link">
+                  <span className="header__list-text">Price</span>
+                </a>
+              </Link>
+            </li>
 
             <li className="header__list box">
               <Link href="/#contact">
